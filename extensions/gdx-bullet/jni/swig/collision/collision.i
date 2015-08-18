@@ -24,6 +24,7 @@
 
 %ignore btManifoldPoint::getLifeTime;
 %ignore btManifoldPoint::getAppliedImpulse;
+%ignore btManifoldPoint::getCombinedRestitution;
 %ignore btVoronoiSimplexSolver::setEqualVertexThreshold;
 %ignore btVoronoiSimplexSolver::getEqualVertexThreshold;
 
@@ -296,6 +297,8 @@ void btMultiSapBroadphase::quicksort(btBroadphasePairArray& a, int lo, int hi)
 
 %include "./btCompoundShape.i"
 
+%include "./btVoxelShape.i"
+
 %{
 #include <BulletCollision/CollisionShapes/btConvexPointCloudShape.h>
 %}
@@ -449,6 +452,11 @@ void btMultiSapBroadphase::quicksort(btBroadphasePairArray& a, int lo, int hi)
 #include <BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.h>
 %}
 %include "BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.h"
+
+%{
+#include <BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h>
+%}
+%include "BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h"
 
 %{
 #include <BulletCollision/NarrowPhaseCollision/btConvexCast.h>

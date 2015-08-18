@@ -161,7 +161,7 @@ public:
 	}
 	virtual btScalar	getMargin() const
 	{
-		return getMargin();
+		return btConvexInternalShape::getMargin();
 	}
 };
 
@@ -737,7 +737,7 @@ struct btSoftColliders
 			idt			=	ps->m_sst.isdt;
 			m_margin		=	m_colObjWrap->getCollisionShape()->getMargin()+psb->getCollisionShape()->getMargin();
 			///Bullet rigid body uses multiply instead of minimum to determine combined friction. Some customization would be useful.
-			friction	=	btMin(psb->m_cfg.kDF,m_colObjWrap->getCollisionObject()->getFriction());
+			friction	=	btMin(psb->m_cfg.kDF,m_colObjWrap->getFriction());
 			btVector3			mins;
 			btVector3			maxs;
 
@@ -835,7 +835,7 @@ struct btSoftColliders
 					const btVector3		vr=vb-va;
 					const btScalar		dn=btDot(vr,c.m_cti.m_normal);
 					const btVector3		fv=vr-c.m_cti.m_normal*dn;
-					const btScalar		fc=psb->m_cfg.kDF*m_colObj1Wrap->getCollisionObject()->getFriction();
+					const btScalar		fc=psb->m_cfg.kDF*m_colObj1Wrap->getFriction();
 					c.m_node	=	&n;
 					c.m_c0		=	ImpulseMatrix(psb->m_sst.sdt,ima,imb,iwi,ra);
 					c.m_c1		=	ra;

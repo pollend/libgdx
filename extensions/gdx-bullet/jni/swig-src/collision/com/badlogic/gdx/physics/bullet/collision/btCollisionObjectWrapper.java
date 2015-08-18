@@ -104,6 +104,26 @@ public class btCollisionObjectWrapper extends BulletBase {
 	return CollisionJNI.btCollisionObjectWrapper_worldTransform_get(swigCPtr, this);
 }
 
+  public void setUserPointer(long value) {
+    CollisionJNI.btCollisionObjectWrapper_userPointer_set(swigCPtr, this, value);
+  }
+
+  public long getUserPointer() {
+    return CollisionJNI.btCollisionObjectWrapper_userPointer_get(swigCPtr, this);
+  }
+
+  public float getFriction() {
+    return CollisionJNI.btCollisionObjectWrapper_friction_get(swigCPtr, this);
+  }
+
+  public float getRollingFriction() {
+    return CollisionJNI.btCollisionObjectWrapper_rollingFriction_get(swigCPtr, this);
+  }
+
+  public float getRestitution() {
+    return CollisionJNI.btCollisionObjectWrapper_restitution_get(swigCPtr, this);
+  }
+
   public void setPartId(int value) {
     CollisionJNI.btCollisionObjectWrapper_partId_set(swigCPtr, this, value);
   }

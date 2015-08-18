@@ -345,5 +345,19 @@
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.cpp">
       <Filter>Source Files\bullet\BulletCollision\NarrowPhaseCollision</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.cpp">
+      <Filter>Source Files\bullet\BulletCollision\CollisionDispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.cpp">
+      <Filter>Source Files\bullet\BulletCollision\CollisionShapes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.h">
+      <Filter>Source Files\bullet\BulletCollision\CollisionDispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.h">
+      <Filter>Source Files\bullet\BulletCollision\CollisionShapes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

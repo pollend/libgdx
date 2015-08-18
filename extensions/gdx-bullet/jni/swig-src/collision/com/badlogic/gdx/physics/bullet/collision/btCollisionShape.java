@@ -133,6 +133,8 @@ public class btCollisionShape extends BulletBase {
       break;
     case BroadphaseNativeTypes.COMPOUND_SHAPE_PROXYTYPE:
       return new btCompoundShape(swigCPtr, owner);
+    case BroadphaseNativeTypes.VOXEL_SHAPE_PROXYTYPE:
+      return new btVoxelShape(swigCPtr, owner);
 /*
     case BroadphaseNativeTypes.SOFTBODY_SHAPE_PROXYTYPE:
       return new btSoftBodyShape(swigCPtr, owner);
@@ -190,6 +192,10 @@ public class btCollisionShape extends BulletBase {
 
   public boolean isCompound() {
     return CollisionJNI.btCollisionShape_isCompound(swigCPtr, this);
+  }
+
+  public boolean isVoxel() {
+    return CollisionJNI.btCollisionShape_isVoxel(swigCPtr, this);
   }
 
   public boolean isSoftBody() {

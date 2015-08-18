@@ -87,6 +87,11 @@ public:
 		return btBroadphaseProxy::isCompound(getShapeType());
 	}
 
+	SIMD_FORCE_INLINE bool	isVoxel() const
+	{
+		return btBroadphaseProxy::isVoxel(getShapeType());
+	}
+
 	SIMD_FORCE_INLINE bool	isSoftBody() const
 	{
 		return btBroadphaseProxy::isSoftBody(getShapeType());

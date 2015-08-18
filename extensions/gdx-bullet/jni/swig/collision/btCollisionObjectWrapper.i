@@ -63,6 +63,10 @@
 
 %ignore btCollisionObjectWrapper::getWorldTransform;
 %ignore btCollisionObjectWrapper::getCollisionObject;
+%ignore btCollisionObjectWrapper::getUserPointer;
+%ignore btCollisionObjectWrapper::getFriction;
+%ignore btCollisionObjectWrapper::getRestitution;
+%ignore btCollisionObjectWrapper::getRollingFriction;
 
 %include "BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
 %include "gdx/collision/CollisionObjectWrapper.h"

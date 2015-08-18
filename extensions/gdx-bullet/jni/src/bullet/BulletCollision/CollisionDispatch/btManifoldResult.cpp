@@ -25,7 +25,7 @@ ContactAddedCallback		gContactAddedCallback=0;
 
 
 ///User can override this material combiner by implementing gContactAddedCallback and setting body0->m_collisionFlags |= btCollisionObject::customMaterialCallback;
-inline btScalar	calculateCombinedRollingFriction(const btCollisionObject* body0,const btCollisionObject* body1)
+inline btScalar	calculateCombinedRollingFriction(const btCollisionObjectWrapper* body0,const btCollisionObjectWrapper* body1)
 {
 	btScalar friction = body0->getRollingFriction() * body1->getRollingFriction();
 
@@ -40,7 +40,7 @@ inline btScalar	calculateCombinedRollingFriction(const btCollisionObject* body0,
 
 
 ///User can override this material combiner by implementing gContactAddedCallback and setting body0->m_collisionFlags |= btCollisionObject::customMaterialCallback;
-btScalar	btManifoldResult::calculateCombinedFriction(const btCollisionObject* body0,const btCollisionObject* body1)
+btScalar	btManifoldResult::calculateCombinedFriction(const btCollisionObjectWrapper* body0,const btCollisionObjectWrapper* body1)
 {
 	btScalar friction = body0->getFriction() * body1->getFriction();
 
@@ -53,7 +53,26 @@ btScalar	btManifoldResult::calculateCombinedFriction(const btCollisionObject* bo
 
 }
 
-btScalar	btManifoldResult::calculateCombinedRestitution(const btCollisionObject* body0,const btCollisionObject* body1)
+btScalar	btManifoldResult::calculateCombinedRestitution(const btCollisionObjectWrapper* body0,const btCollisionObjectWrapper* body1)
+{
+	return body0->getRestitution() * body1->getRestitution();
+}
+
+///User can override this material combiner by implementing gContactAddedCallback and setting body0->m_collisionFlags |= btCollisionObject::customMaterialCallback;
+btScalar	btManifoldResult::calculateCombinedFriction(const btCollisionObject* body0, const btCollisionObject* body1)
+{
+	btScalar friction = body0->getFriction() * body1->getFriction();
+
+	const btScalar MAX_FRICTION = btScalar(10.);
+	if (friction < -MAX_FRICTION)
+		friction = -MAX_FRICTION;
+	if (friction > MAX_FRICTION)
+		friction = MAX_FRICTION;
+	return friction;
+
+}
+
+btScalar	btManifoldResult::calculateCombinedRestitution(const btCollisionObject* body0, const btCollisionObject* body1)
 {
 	return body0->getRestitution() * body1->getRestitution();
 }
@@ -84,7 +103,6 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 		return;
 
 	bool isSwapped = m_manifoldPtr->getBody0() != m_body0Wrap->getCollisionObject();
-	bool isNewCollision = m_manifoldPtr->getNumContacts() == 0;
 
 	btVector3 pointA = pointInWorld + normalOnBInWorld * depth;
 
@@ -107,9 +125,9 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	
 	int insertIndex = m_manifoldPtr->getCacheEntry(newPt);
 
-	newPt.m_combinedFriction = calculateCombinedFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
-	newPt.m_combinedRestitution = calculateCombinedRestitution(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
-	newPt.m_combinedRollingFriction = calculateCombinedRollingFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
+	newPt.m_combinedFriction = calculateCombinedFriction(m_body0Wrap, m_body1Wrap);
+	newPt.m_combinedRestitution = calculateCombinedRestitution(m_body0Wrap,m_body1Wrap);
+	newPt.m_combinedRollingFriction = calculateCombinedRollingFriction(m_body0Wrap, m_body1Wrap);
 	btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
 	
 
@@ -151,9 +169,5 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 		(*gContactAddedCallback)(m_manifoldPtr->getContactPoint(insertIndex),obj0Wrap,newPt.m_partId0,newPt.m_index0,obj1Wrap,newPt.m_partId1,newPt.m_index1);
 	}
 
-	if (gContactStartedCallback && isNewCollision)
-	{
-		gContactStartedCallback(m_manifoldPtr);
-	}
 }
 

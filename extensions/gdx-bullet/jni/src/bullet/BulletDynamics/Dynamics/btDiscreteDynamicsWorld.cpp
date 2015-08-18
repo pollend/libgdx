@@ -1093,7 +1093,7 @@ void	btDiscreteDynamicsWorld::integrateTransforms(btScalar timeStep)
 			for (int p=0;p<manifold->getNumContacts();p++)
 			{
 				const btManifoldPoint& pt = manifold->getContactPoint(p);
-				btScalar combinedRestitution = btManifoldResult::calculateCombinedRestitution(body0, body1);
+				btScalar combinedRestitution = pt.getCombinedRestitution();
 
 				if (combinedRestitution>0 && pt.m_appliedImpulse != 0.f)
 				//if (pt.getDistance()>0 && combinedRestitution>0 && pt.m_appliedImpulse != 0.f)

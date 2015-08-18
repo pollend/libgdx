@@ -103,12 +103,20 @@ public class btManifoldResult extends btDiscreteCollisionDetectorInterface.Resul
 	return btCollisionObject.getInstance(CollisionJNI.btManifoldResult_getBody1Internal(swigCPtr, this), false);
 }
 
+  public static float calculateCombinedRestitution(btCollisionObjectWrapper body0, btCollisionObjectWrapper body1) {
+    return CollisionJNI.btManifoldResult_calculateCombinedRestitution__SWIG_0(btCollisionObjectWrapper.getCPtr(body0), body0, btCollisionObjectWrapper.getCPtr(body1), body1);
+  }
+
+  public static float calculateCombinedFriction(btCollisionObjectWrapper body0, btCollisionObjectWrapper body1) {
+    return CollisionJNI.btManifoldResult_calculateCombinedFriction__SWIG_0(btCollisionObjectWrapper.getCPtr(body0), body0, btCollisionObjectWrapper.getCPtr(body1), body1);
+  }
+
   public static float calculateCombinedRestitution(btCollisionObject body0, btCollisionObject body1) {
-    return CollisionJNI.btManifoldResult_calculateCombinedRestitution(btCollisionObject.getCPtr(body0), body0, btCollisionObject.getCPtr(body1), body1);
+    return CollisionJNI.btManifoldResult_calculateCombinedRestitution__SWIG_1(btCollisionObject.getCPtr(body0), body0, btCollisionObject.getCPtr(body1), body1);
   }
 
   public static float calculateCombinedFriction(btCollisionObject body0, btCollisionObject body1) {
-    return CollisionJNI.btManifoldResult_calculateCombinedFriction(btCollisionObject.getCPtr(body0), body0, btCollisionObject.getCPtr(body1), body1);
+    return CollisionJNI.btManifoldResult_calculateCombinedFriction__SWIG_1(btCollisionObject.getCPtr(body0), body0, btCollisionObject.getCPtr(body1), body1);
   }
 
 }
