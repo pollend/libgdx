@@ -1352,6 +1352,9 @@ public class CollisionJNI {
   public final static native void delete_btVoxelInfo(long jarg1);
   public final static native void delete_btVoxelContentProvider(long jarg1);
   public final static native long btVoxelContentProvider_getVoxel(long jarg1, btVoxelContentProvider jarg1_, int jarg2, int jarg3, int jarg4);
+  public final static native long new_btVoxelContentProvider();
+  public final static native void btVoxelContentProvider_director_connect(btVoxelContentProvider obj, long cptr, boolean mem_own, boolean weak_global);
+  public final static native void btVoxelContentProvider_change_ownership(btVoxelContentProvider obj, long cptr, boolean take_or_release);
   public final static native long new_btVoxelShape(long jarg1, btVoxelContentProvider jarg1_, Vector3 jarg2, Vector3 jarg3);
   public final static native void delete_btVoxelShape(long jarg1);
   public final static native long btVoxelShape_getContentProvider(long jarg1, btVoxelShape jarg1_);
@@ -3096,6 +3099,9 @@ public class CollisionJNI {
   }
   public static void SwigDirector_btInternalTriangleIndexCallback_internalProcessTriangleIndex(btInternalTriangleIndexCallback jself, long triangle, int partId, int triangleIndex) {
     jself.internalProcessTriangleIndex((triangle == 0) ? null : new btVector3(triangle, false), partId, triangleIndex);
+  }
+  public static long SwigDirector_btVoxelContentProvider_getVoxel(btVoxelContentProvider jself, int x, int y, int z) {
+    return btVoxelInfo.getCPtr(jself.getVoxel(x, y, z));
   }
   public static void SwigDirector_btConvexTriangleCallback_processTriangle(btConvexTriangleCallback jself, long triangle, int partId, int triangleIndex) {
     jself.processTriangle((triangle == 0) ? null : new btVector3(triangle, false), partId, triangleIndex);

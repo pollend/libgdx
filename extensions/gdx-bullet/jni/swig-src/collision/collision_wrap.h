@@ -133,6 +133,21 @@ protected:
     Swig::BoolArray<1> swig_override;
 };
 
+struct SwigDirector_btVoxelContentProvider : public btVoxelContentProvider, public Swig::Director {
+
+public:
+    void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
+    SwigDirector_btVoxelContentProvider(JNIEnv *jenv);
+    virtual ~SwigDirector_btVoxelContentProvider();
+    virtual btVoxelInfo getVoxel(int x, int y, int z) const;
+public:
+    bool swig_overrides(int n) {
+      return (n < 1 ? swig_override[n] : false);
+    }
+protected:
+    Swig::BoolArray<1> swig_override;
+};
+
 class SwigDirector_btConvexTriangleCallback : public btConvexTriangleCallback, public Swig::Director {
 
 public:

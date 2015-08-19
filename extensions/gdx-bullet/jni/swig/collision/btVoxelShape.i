@@ -1,6 +1,6 @@
 %module btVoxelShape
 
-%feature("director") VoxelContentProvider;
+%feature("director") btVoxelContentProvider;
 
 %{
 #include <BulletCollision/CollisionShapes/btVoxelShape.h>

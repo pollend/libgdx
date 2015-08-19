@@ -58,8 +58,28 @@ public class btVoxelContentProvider extends BulletBase {
 		super.delete();
 	}
 
+  protected void swigDirectorDisconnect() {
+    swigCMemOwn = false;
+    delete();
+  }
+
+  public void swigReleaseOwnership() {
+    swigCMemOwn = false;
+    CollisionJNI.btVoxelContentProvider_change_ownership(this, swigCPtr, false);
+  }
+
+  public void swigTakeOwnership() {
+    swigCMemOwn = true;
+    CollisionJNI.btVoxelContentProvider_change_ownership(this, swigCPtr, true);
+  }
+
   public btVoxelInfo getVoxel(int x, int y, int z) {
     return new btVoxelInfo(CollisionJNI.btVoxelContentProvider_getVoxel(swigCPtr, this, x, y, z), true);
+  }
+
+  public btVoxelContentProvider() {
+    this(CollisionJNI.new_btVoxelContentProvider(), true);
+    CollisionJNI.btVoxelContentProvider_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
 }
