@@ -576,5 +576,19 @@
     <ClCompile Include="..\..\..\src\bullet\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp">
       <Filter>Source Files\bullet\BulletDynamics\MLCPSolvers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.cpp">
+      <Filter>Source Files\bullet\BulletCollision\CollisionShapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.cpp">
+      <Filter>Source Files\bullet\BulletCollision\CollisionDispatch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.h">
+      <Filter>Source Files\bullet\BulletCollision\CollisionShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.h">
+      <Filter>Source Files\bullet\BulletCollision\CollisionDispatch</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

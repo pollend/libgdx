@@ -58,8 +58,8 @@ public class LocalConvexResult extends BulletBase {
 		super.delete();
 	}
 
-  public LocalConvexResult(btCollisionObject hitCollisionObject, LocalShapeInfo localShapeInfo, Vector3 hitNormalLocal, Vector3 hitPointLocal, float hitFraction) {
-    this(CollisionJNI.new_LocalConvexResult(btCollisionObject.getCPtr(hitCollisionObject), hitCollisionObject, LocalShapeInfo.getCPtr(localShapeInfo), localShapeInfo, hitNormalLocal, hitPointLocal, hitFraction), true);
+  public LocalConvexResult(btCollisionObject hitCollisionObject, btCollisionShape hitCollisionShape, LocalShapeInfo localShapeInfo, Vector3 hitNormalLocal, Vector3 hitPointLocal, float hitFraction, long userPointer) {
+    this(CollisionJNI.new_LocalConvexResult(btCollisionObject.getCPtr(hitCollisionObject), hitCollisionObject, btCollisionShape.getCPtr(hitCollisionShape), hitCollisionShape, LocalShapeInfo.getCPtr(localShapeInfo), localShapeInfo, hitNormalLocal, hitPointLocal, hitFraction, userPointer), true);
   }
 
   public void setHitCollisionObject(btCollisionObject value) {
@@ -69,6 +69,15 @@ public class LocalConvexResult extends BulletBase {
   public btCollisionObject getHitCollisionObject() {
 	return btCollisionObject.getInstance(CollisionJNI.LocalConvexResult_hitCollisionObject_get(swigCPtr, this), false);
 }
+
+  public void setHitCollisionShape(btCollisionShape value) {
+    CollisionJNI.LocalConvexResult_hitCollisionShape_set(swigCPtr, this, btCollisionShape.getCPtr(value), value);
+  }
+
+  public btCollisionShape getHitCollisionShape() {
+    long cPtr = CollisionJNI.LocalConvexResult_hitCollisionShape_get(swigCPtr, this);
+    return (cPtr == 0) ? null : btCollisionShape.newDerivedObject(cPtr, false);
+  }
 
   public void setLocalShapeInfo(LocalShapeInfo value) {
     CollisionJNI.LocalConvexResult_localShapeInfo_set(swigCPtr, this, LocalShapeInfo.getCPtr(value), value);
@@ -85,6 +94,14 @@ public class LocalConvexResult extends BulletBase {
 
   public float getHitFraction() {
     return CollisionJNI.LocalConvexResult_hitFraction_get(swigCPtr, this);
+  }
+
+  public void setUserPointer(long value) {
+    CollisionJNI.LocalConvexResult_userPointer_set(swigCPtr, this, value);
+  }
+
+  public long getUserPointer() {
+    return CollisionJNI.LocalConvexResult_userPointer_get(swigCPtr, this);
   }
 
   public void getHitNormalLocal(Vector3 out) {

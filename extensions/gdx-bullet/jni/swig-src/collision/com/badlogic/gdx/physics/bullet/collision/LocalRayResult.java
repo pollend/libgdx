@@ -58,8 +58,8 @@ public class LocalRayResult extends BulletBase {
 		super.delete();
 	}
 
-  public LocalRayResult(btCollisionObject collisionObject, LocalShapeInfo localShapeInfo, Vector3 hitNormalLocal, float hitFraction) {
-    this(CollisionJNI.new_LocalRayResult(btCollisionObject.getCPtr(collisionObject), collisionObject, LocalShapeInfo.getCPtr(localShapeInfo), localShapeInfo, hitNormalLocal, hitFraction), true);
+  public LocalRayResult(btCollisionObject collisionObject, btCollisionShape collisionShape, long userData, LocalShapeInfo localShapeInfo, Vector3 hitNormalLocal, float hitFraction) {
+    this(CollisionJNI.new_LocalRayResult(btCollisionObject.getCPtr(collisionObject), collisionObject, btCollisionShape.getCPtr(collisionShape), collisionShape, userData, LocalShapeInfo.getCPtr(localShapeInfo), localShapeInfo, hitNormalLocal, hitFraction), true);
   }
 
   public void setCollisionObject(btCollisionObject value) {
@@ -69,6 +69,23 @@ public class LocalRayResult extends BulletBase {
   public btCollisionObject getCollisionObject() {
 	return btCollisionObject.getInstance(CollisionJNI.LocalRayResult_collisionObject_get(swigCPtr, this), false);
 }
+
+  public void setCollisionShape(btCollisionShape value) {
+    CollisionJNI.LocalRayResult_collisionShape_set(swigCPtr, this, btCollisionShape.getCPtr(value), value);
+  }
+
+  public btCollisionShape getCollisionShape() {
+    long cPtr = CollisionJNI.LocalRayResult_collisionShape_get(swigCPtr, this);
+    return (cPtr == 0) ? null : btCollisionShape.newDerivedObject(cPtr, false);
+  }
+
+  public void setUserPointer(long value) {
+    CollisionJNI.LocalRayResult_userPointer_set(swigCPtr, this, value);
+  }
+
+  public long getUserPointer() {
+    return CollisionJNI.LocalRayResult_userPointer_get(swigCPtr, this);
+  }
 
   public void setLocalShapeInfo(LocalShapeInfo value) {
     CollisionJNI.LocalRayResult_localShapeInfo_set(swigCPtr, this, LocalShapeInfo.getCPtr(value), value);

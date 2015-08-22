@@ -182,21 +182,27 @@ public:
 
 	struct	LocalRayResult
 	{
-		LocalRayResult(const btCollisionObject*	collisionObject, 
+		LocalRayResult(const btCollisionObject*	collisionObject,
+			const btCollisionShape* collisionShape,
+			const void * userData,
 			LocalShapeInfo*	localShapeInfo,
 			const btVector3&		hitNormalLocal,
 			btScalar hitFraction)
 		:m_collisionObject(collisionObject),
+		m_collisionShape(collisionShape),
+		m_userPointer(userData),
 		m_localShapeInfo(localShapeInfo),
 		m_hitNormalLocal(hitNormalLocal),
 		m_hitFraction(hitFraction)
 		{
 		}
 
-		const btCollisionObject*		m_collisionObject;
-		LocalShapeInfo*			m_localShapeInfo;
-		btVector3				m_hitNormalLocal;
-		btScalar				m_hitFraction;
+		const btCollisionObject*	m_collisionObject;
+		const btCollisionShape*		m_collisionShape;
+		const void *				m_userPointer;
+		LocalShapeInfo*				m_localShapeInfo;
+		btVector3					m_hitNormalLocal;
+		btScalar					m_hitFraction;
 
 	};
 
@@ -315,25 +321,31 @@ public:
 
 	struct LocalConvexResult
 	{
-		LocalConvexResult(const btCollisionObject*	hitCollisionObject, 
+		LocalConvexResult(const btCollisionObject*	hitCollisionObject,
+			const btCollisionShape* hitCollisionShape,
 			LocalShapeInfo*	localShapeInfo,
 			const btVector3&		hitNormalLocal,
 			const btVector3&		hitPointLocal,
-			btScalar hitFraction
+			btScalar hitFraction,
+			const void* userPointer
 			)
 		:m_hitCollisionObject(hitCollisionObject),
+		m_hitCollisionShape(hitCollisionShape),
 		m_localShapeInfo(localShapeInfo),
 		m_hitNormalLocal(hitNormalLocal),
 		m_hitPointLocal(hitPointLocal),
-		m_hitFraction(hitFraction)
+		m_hitFraction(hitFraction),
+		m_userPointer(userPointer)
 		{
 		}
 
 		const btCollisionObject*		m_hitCollisionObject;
+		const btCollisionShape*			m_hitCollisionShape;
 		LocalShapeInfo*			m_localShapeInfo;
 		btVector3				m_hitNormalLocal;
 		btVector3				m_hitPointLocal;
 		btScalar				m_hitFraction;
+		const void*				m_userPointer;
 	};
 
 	///RayResultCallback is used to report new raycast results

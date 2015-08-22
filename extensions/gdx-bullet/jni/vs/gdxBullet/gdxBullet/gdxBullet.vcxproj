@@ -54,6 +54,7 @@
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btSphereTriangleCollisionAlgorithm.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btUnionFind.cpp" />
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\SphereTriangleDetector.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btBox2dShape.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btBoxShape.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btTriangleMesh.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btTriangleMeshShape.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btUniformScalingShape.cpp" />
+    <ClCompile Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\Gimpact\btContactProcessing.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\Gimpact\btGenericPoolAllocator.cpp" />
     <ClCompile Include="..\..\..\src\bullet\BulletCollision\Gimpact\btGImpactBvh.cpp" />
@@ -180,6 +182,10 @@
     <ClCompile Include="..\..\..\swig-src\extras\extras_wrap.cpp" />
     <ClCompile Include="..\..\..\swig-src\linearmath\linearmath_wrap.cpp" />
     <ClCompile Include="..\..\..\swig-src\softbody\softbody_wrap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionDispatch\btVoxelCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\src\bullet\BulletCollision\CollisionShapes\btVoxelShape.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{57008B00-26B2-4F53-9C54-F4D17B5C3122}</ProjectGuid>
