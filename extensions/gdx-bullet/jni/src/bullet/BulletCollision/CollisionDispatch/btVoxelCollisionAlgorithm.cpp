@@ -14,6 +14,7 @@ subject to the following restrictions:
 
 */
 
+#include <limits.h>
 #include "BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 #include "BulletCollision/CollisionShapes/btVoxelShape.h"
