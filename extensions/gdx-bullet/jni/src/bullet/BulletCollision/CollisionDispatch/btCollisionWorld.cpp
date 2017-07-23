@@ -17,6 +17,7 @@ subject to the following restrictions:
 #include "btCollisionDispatcher.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 #include "BulletCollision/CollisionShapes/btCollisionShape.h"
+#include "BulletCollision/CollisionShapes/btVoxelShape.h"
 #include "BulletCollision/CollisionShapes/btConvexShape.h"
 #include "BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h"
 #include "BulletCollision/CollisionShapes/btSphereShape.h" //for raycasting
@@ -565,6 +566,71 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					}	
 				}
 			}
+			else if (collisionShape->isVoxel()) {
+				const btVoxelShape* voxelShape = (btVoxelShape*) collisionShape;
+				const btVoxelContentProvider* contentProvider = voxelShape->getContentProvider();
+
+				int currentVox[3];
+				btVector3 distance;
+				btVector3 delta;
+				btVector3 tNext;
+				int steps = 1;
+				int increments[3];
+
+				for (int i = 0; i < 3; ++i) {
+					currentVox[i] = static_cast <int> (floor(rayFromTrans.getOrigin()[i] + 0.5f));
+					distance[i] = btFabs(rayToTrans.getOrigin()[i] - rayFromTrans.getOrigin()[i]);
+					delta[i] = 1.0f / distance[i];
+					
+					if (rayToTrans.getOrigin()[i] > rayFromTrans.getOrigin()[i]) 
+					{
+						increments[i] = 1;
+						steps += static_cast <int> (floor(rayToTrans.getOrigin()[i] + 0.5f)) - currentVox[i];
+						tNext[i] = (currentVox[i] + 0.5f - rayFromTrans.getOrigin()[i]) * delta[i];
+					}
+					else if (rayToTrans.getOrigin()[i] < rayFromTrans.getOrigin()[i]) 
+					{
+						increments[i] = -1;
+						steps += currentVox[i] - static_cast <int> (floor(rayToTrans.getOrigin()[i] + 0.5f));
+						tNext[i] = (rayFromTrans.getOrigin()[i] - currentVox[i] + 0.5f) * delta[i];
+					} 
+					else 
+					{
+						increments[i] = 0;
+						tNext[i] = delta[i];
+					}
+				}
+
+				for (; steps > 0; --steps) {
+					btVoxelInfo childInfo = contentProvider->getVoxel(currentVox[0], currentVox[1], currentVox[2]);
+					if (childInfo.m_tracable) {
+						btVector3 pos(static_cast <btScalar> (currentVox[0]), static_cast <btScalar> (currentVox[1]), static_cast <btScalar> (currentVox[2]));
+						pos += childInfo.m_collisionOffset;
+
+						btTransform childTransform(btQuaternion(0, 0, 0, 1), pos);
+
+						btCollisionObjectWrapper tmpOb(collisionObjectWrap, childInfo.m_collisionShape, collisionObjectWrap->getCollisionObject(), childTransform, -1, -1);//, childInfo.m_userPointer, childInfo.m_friction, childInfo.m_restitution, childInfo.m_rollingFriction);
+
+						rayTestSingleInternal(rayFromTrans, rayToTrans,
+							&tmpOb,
+							resultCallback);
+						
+						// Early out if hit - need to consider this (what if user wants to go deeper)
+						break;
+					}
+
+					int next;
+					if (tNext[0] < tNext[1]) {
+						next = (tNext[0] < tNext[2]) ? 0 : 2;
+					}
+					else {
+						next = (tNext[1] < tNext[2]) ? 1 : 2;
+					}
+					tNext[next] += delta[next];
+					currentVox[next] += increments[next];
+				}
+			}
+			
 		}
 	}
 }

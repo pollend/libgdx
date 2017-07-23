@@ -20,6 +20,7 @@ subject to the following restrictions:
 #include "BulletCollision/CollisionDispatch/btConvexConcaveCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btCompoundCompoundCollisionAlgorithm.h"
+#include "BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h"
 
 #include "BulletCollision/CollisionDispatch/btConvexPlaneCollisionAlgorithm.h"
 #include "BulletCollision/CollisionDispatch/btBoxBoxCollisionAlgorithm.h"
@@ -266,6 +267,15 @@ btCollisionAlgorithmCreateFunc* btDefaultCollisionConfiguration::getCollisionAlg
 	if (btBroadphaseProxy::isConvex(proxyType1) && btBroadphaseProxy::isConcave(proxyType0))
 	{
 		return m_swappedConvexConcaveCreateFunc;
+	}
+
+	if (btBroadphaseProxy::isVoxel(proxyType0))
+	{
+		return m_voxelCreateFunc;
+	}
+	else if (btBroadphaseProxy::isVoxel(proxyType1))
+	{
+		return m_swappedVoxelCreateFunc;
 	}
 
 
