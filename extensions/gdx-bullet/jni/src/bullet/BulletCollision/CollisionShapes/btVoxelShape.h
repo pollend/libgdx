@@ -76,12 +76,12 @@ ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 };
 
 /// Provider of voxel information for a given voxel position
-struct btVoxelContentProvider
+ATTRIBUTE_ALIGNED16(struct) btVoxelContentProvider
 {
-	virtual ~btVoxelContentProvider() {}
-	
-	virtual btVoxelInfo getVoxel(int x, int y, int z) const = 0;
+    BT_DECLARE_ALIGNED_ALLOCATOR();
 
+	virtual btVoxelInfo getVoxel(int x, int y, int z) const = 0;
+	virtual ~btVoxelContentProvider() {}
 };
 
 /// The btVoxelShape is a three dimensional grid of arbitrary size, with each cell containing a voxel. The contents of each cell is delegated to a

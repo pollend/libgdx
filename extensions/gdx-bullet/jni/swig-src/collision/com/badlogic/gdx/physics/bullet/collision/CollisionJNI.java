@@ -758,8 +758,11 @@ public class CollisionJNI {
   public final static native long new_btVoxelInfo__SWIG_0();
   public final static native long new_btVoxelInfo__SWIG_1(boolean jarg1, boolean jarg2, int jarg3, long jarg4, long jarg5, btCollisionShape jarg5_, Vector3 jarg6, float jarg7, float jarg8, float jarg9);
   public final static native void delete_btVoxelInfo(long jarg1);
-  public final static native void delete_btVoxelContentProvider(long jarg1);
   public final static native long btVoxelContentProvider_getVoxel(long jarg1, btVoxelContentProvider jarg1_, int jarg2, int jarg3, int jarg4);
+  public final static native void delete_btVoxelContentProvider(long jarg1);
+  public final static native long new_btVoxelContentProvider();
+  public final static native void btVoxelContentProvider_director_connect(btVoxelContentProvider obj, long cptr, boolean mem_own, boolean weak_global);
+  public final static native void btVoxelContentProvider_change_ownership(btVoxelContentProvider obj, long cptr, boolean take_or_release);
   public final static native long new_btVoxelShape(long jarg1, btVoxelContentProvider jarg1_, Vector3 jarg2, Vector3 jarg3);
   public final static native void delete_btVoxelShape(long jarg1);
   public final static native long btVoxelShape_getContentProvider(long jarg1, btVoxelShape jarg1_);
@@ -1720,6 +1723,33 @@ public class CollisionJNI {
   public final static native long btCompoundCompoundCollisionAlgorithm_SwappedCreateFunc_CreateCollisionAlgorithm(long jarg1, btCompoundCompoundCollisionAlgorithm.SwappedCreateFunc jarg1_, long jarg2, btCollisionAlgorithmConstructionInfo jarg2_, long jarg3, btCollisionObjectWrapper jarg3_, long jarg4, btCollisionObjectWrapper jarg4_);
   public final static native long new_btCompoundCompoundCollisionAlgorithm_SwappedCreateFunc();
   public final static native void delete_btCompoundCompoundCollisionAlgorithm_SwappedCreateFunc(long jarg1);
+  public final static native void btVector3i_x_set(long jarg1, btVector3i jarg1_, int jarg2);
+  public final static native int btVector3i_x_get(long jarg1, btVector3i jarg1_);
+  public final static native void btVector3i_y_set(long jarg1, btVector3i jarg1_, int jarg2);
+  public final static native int btVector3i_y_get(long jarg1, btVector3i jarg1_);
+  public final static native void btVector3i_z_set(long jarg1, btVector3i jarg1_, int jarg2);
+  public final static native int btVector3i_z_get(long jarg1, btVector3i jarg1_);
+  public final static native long new_btVector3i__SWIG_0();
+  public final static native long new_btVector3i__SWIG_1(int jarg1, int jarg2, int jarg3);
+  public final static native void delete_btVector3i(long jarg1);
+  public final static native void btVoxelCollisionInfo_position_set(long jarg1, btVoxelCollisionInfo jarg1_, long jarg2, btVector3i jarg2_);
+  public final static native long btVoxelCollisionInfo_position_get(long jarg1, btVoxelCollisionInfo jarg1_);
+  public final static native void btVoxelCollisionInfo_voxelTypeId_set(long jarg1, btVoxelCollisionInfo jarg1_, int jarg2);
+  public final static native int btVoxelCollisionInfo_voxelTypeId_get(long jarg1, btVoxelCollisionInfo jarg1_);
+  public final static native void btVoxelCollisionInfo_shapeType_set(long jarg1, btVoxelCollisionInfo jarg1_, int jarg2);
+  public final static native int btVoxelCollisionInfo_shapeType_get(long jarg1, btVoxelCollisionInfo jarg1_);
+  public final static native void btVoxelCollisionInfo_algorithm_set(long jarg1, btVoxelCollisionInfo jarg1_, long jarg2, btCollisionAlgorithm jarg2_);
+  public final static native long btVoxelCollisionInfo_algorithm_get(long jarg1, btVoxelCollisionInfo jarg1_);
+  public final static native long new_btVoxelCollisionInfo();
+  public final static native void delete_btVoxelCollisionInfo(long jarg1);
+  public final static native long new_btVoxelCollisionAlgorithm(long jarg1, btCollisionAlgorithmConstructionInfo jarg1_, long jarg2, btCollisionObjectWrapper jarg2_, long jarg3, btCollisionObjectWrapper jarg3_, boolean jarg4);
+  public final static native void delete_btVoxelCollisionAlgorithm(long jarg1);
+  public final static native long btVoxelCollisionAlgorithm_CreateFunc_CreateCollisionAlgorithm(long jarg1, btVoxelCollisionAlgorithm.CreateFunc jarg1_, long jarg2, btCollisionAlgorithmConstructionInfo jarg2_, long jarg3, btCollisionObjectWrapper jarg3_, long jarg4, btCollisionObjectWrapper jarg4_);
+  public final static native long new_btVoxelCollisionAlgorithm_CreateFunc();
+  public final static native void delete_btVoxelCollisionAlgorithm_CreateFunc(long jarg1);
+  public final static native long btVoxelCollisionAlgorithm_SwappedCreateFunc_CreateCollisionAlgorithm(long jarg1, btVoxelCollisionAlgorithm.SwappedCreateFunc jarg1_, long jarg2, btCollisionAlgorithmConstructionInfo jarg2_, long jarg3, btCollisionObjectWrapper jarg3_, long jarg4, btCollisionObjectWrapper jarg4_);
+  public final static native long new_btVoxelCollisionAlgorithm_SwappedCreateFunc();
+  public final static native void delete_btVoxelCollisionAlgorithm_SwappedCreateFunc(long jarg1);
   public final static native void delete_btCollisionConfiguration(long jarg1);
   public final static native long btCollisionConfiguration_getPersistentManifoldPool(long jarg1, btCollisionConfiguration jarg1_);
   public final static native long btCollisionConfiguration_getCollisionAlgorithmPool(long jarg1, btCollisionConfiguration jarg1_);
@@ -3030,6 +3060,7 @@ public class CollisionJNI {
   public final static native long btConvexTriangleCallback_SWIGUpcast(long jarg1);
   public final static native long btConvexConcaveCollisionAlgorithm_SWIGUpcast(long jarg1);
   public final static native long btConvexPlaneCollisionAlgorithm_SWIGUpcast(long jarg1);
+  public final static native long btVoxelCollisionAlgorithm_SWIGUpcast(long jarg1);
   public final static native long btDefaultCollisionConfiguration_SWIGUpcast(long jarg1);
   public final static native long btManifoldResult_SWIGUpcast(long jarg1);
   public final static native long btSphereSphereCollisionAlgorithm_SWIGUpcast(long jarg1);
@@ -3110,6 +3141,9 @@ public class CollisionJNI {
   }
   public static void SwigDirector_btInternalTriangleIndexCallback_internalProcessTriangleIndex(btInternalTriangleIndexCallback jself, long triangle, int partId, int triangleIndex) {
     jself.internalProcessTriangleIndex((triangle == 0) ? null : new btVector3(triangle, false), partId, triangleIndex);
+  }
+  public static long SwigDirector_btVoxelContentProvider_getVoxel(btVoxelContentProvider jself, int x, int y, int z) {
+    return btVoxelInfo.getCPtr(jself.getVoxel(x, y, z));
   }
   public static void SwigDirector_ICollide_Process__SWIG_0(ICollide jself, long arg0, long arg1) {
     jself.Process(btDbvtNode.obtainForArgument(arg0, false), btDbvtNode.obtainForArgument(arg1, false));
