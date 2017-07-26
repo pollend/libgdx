@@ -104,6 +104,10 @@ public class btCollisionObjectWrapper extends BulletBase {
 	return CollisionJNI.btCollisionObjectWrapper_worldTransform_get(swigCPtr, this);
 }
 
+  public btVoxelInfo getVoxelInfo() {
+    return new btVoxelInfo(CollisionJNI.btCollisionObjectWrapper_voxelInfo_get(swigCPtr, this), false);
+  }
+
   public void setPartId(int value) {
     CollisionJNI.btCollisionObjectWrapper_partId_set(swigCPtr, this, value);
   }
@@ -123,6 +127,10 @@ public class btCollisionObjectWrapper extends BulletBase {
   public btCollisionShape getCollisionShape() {
     long cPtr = CollisionJNI.btCollisionObjectWrapper_getCollisionShape(swigCPtr, this);
     return (cPtr == 0) ? null : btCollisionShape.newDerivedObject(cPtr, false);
+  }
+
+  public btVoxelInfo getVoxelInfo() {
+    return new btVoxelInfo(CollisionJNI.btCollisionObjectWrapper_getVoxelInfo(swigCPtr, this), false);
   }
 
 }

@@ -82,12 +82,13 @@ public class btVoxelInfo extends BulletBase {
     return CollisionJNI.btVoxelInfo_voxelTypeId_get(swigCPtr, this);
   }
 
-  public void setUserPointer(long value) {
-    CollisionJNI.btVoxelInfo_userPointer_set(swigCPtr, this, value);
+  public void setVoxelPosition(btVector3 value) {
+    CollisionJNI.btVoxelInfo_voxelPosition_set(swigCPtr, this, btVector3.getCPtr(value), value);
   }
 
-  public long getUserPointer() {
-    return CollisionJNI.btVoxelInfo_userPointer_get(swigCPtr, this);
+  public btVector3 getVoxelPosition() {
+    long cPtr = CollisionJNI.btVoxelInfo_voxelPosition_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new btVector3(cPtr, false);
   }
 
   public void setCollisionShape(btCollisionShape value) {
@@ -136,8 +137,16 @@ public class btVoxelInfo extends BulletBase {
     this(CollisionJNI.new_btVoxelInfo__SWIG_0(), true);
   }
 
-  public btVoxelInfo(boolean _traceable, boolean _blocking, int _voxelTypeId, long _userPointer, btCollisionShape _collisionShape, Vector3 _collisionOffset, float _friction, float _restitution, float _rollingFriction) {
-    this(CollisionJNI.new_btVoxelInfo__SWIG_1(_traceable, _blocking, _voxelTypeId, _userPointer, btCollisionShape.getCPtr(_collisionShape), _collisionShape, _collisionOffset, _friction, _restitution, _rollingFriction), true);
+  public btVoxelInfo(btVoxelInfo other) {
+    this(CollisionJNI.new_btVoxelInfo__SWIG_1(btVoxelInfo.getCPtr(other), other), true);
+  }
+
+  public btVoxelInfo(boolean _traceable, boolean _blocking, int _voxelTypeId, Vector3 _voxelPosition, btCollisionShape _collisionShape, Vector3 _collisionOffset, float _friction, float _restitution, float _rollingFriction) {
+    this(CollisionJNI.new_btVoxelInfo__SWIG_2(_traceable, _blocking, _voxelTypeId, _voxelPosition, btCollisionShape.getCPtr(_collisionShape), _collisionShape, _collisionOffset, _friction, _restitution, _rollingFriction), true);
+  }
+
+  public boolean isEmpty() {
+    return CollisionJNI.btVoxelInfo_isEmpty(swigCPtr, this);
   }
 
 }

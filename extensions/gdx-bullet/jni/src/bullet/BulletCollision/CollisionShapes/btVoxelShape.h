@@ -37,7 +37,7 @@ ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 	/// It is somewhat optional, even with the same id the collision algorithm will attempt to detect changes
 	long				m_voxelTypeId;
 	/// Generic location for additional information to be attached to the voxel, which will be returned by raycasts/collisions
-	void*				m_userPointer;
+	btVector3				m_voxelPosition;
 	/// The shape of the voxel
 	btCollisionShape*	m_collisionShape;
 	/// The offset of the shape from the center of the voxel
@@ -53,6 +53,28 @@ ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 	/**@brief No initialization constructor */
 	SIMD_FORCE_INLINE btVoxelInfo()
 	{
+		m_tracable = false;
+		m_blocking = false;
+		m_voxelPosition = btVector3(0,0,0);
+		m_collisionShape = 0;
+		m_collisionOffset = btVector3(0,0,0);
+		m_friction = 0;
+		m_restitution = 0;
+		m_rollingFriction = 0;
+		m_voxelTypeId = -1;
+	}
+
+	/**@brief Copy constructor */
+	SIMD_FORCE_INLINE btVoxelInfo (const btVoxelInfo& other)
+			: m_tracable(other.m_tracable),
+			  m_blocking(other.m_blocking),
+			  m_voxelTypeId(other.m_voxelTypeId),
+			  m_voxelPosition(other.m_voxelPosition),
+			  m_collisionShape(other.m_collisionShape),
+			  m_friction(other.m_friction),
+			  m_restitution(other.m_restitution),
+			  m_rollingFriction(other.m_rollingFriction)
+	{
 	}
 
 	/**@brief Constructor from scalars
@@ -60,19 +82,13 @@ ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 	* @param y Y value
 	* @param z Z value
 	*/
-	SIMD_FORCE_INLINE btVoxelInfo(const bool& _traceable, const bool& _blocking, const long& _voxelTypeId, void* const _userPointer, btCollisionShape* const _collisionShape, 
+	SIMD_FORCE_INLINE btVoxelInfo(const bool& _traceable, const bool& _blocking, const long& _voxelTypeId, const btVector3& _voxelPosition, btCollisionShape* const _collisionShape,
 		const btVector3& _collisionOffset, const btScalar& _friction, const btScalar& _restitution, const btScalar& _rollingFriction)
-	{
-		m_tracable = _traceable;
-		m_blocking = _blocking;
-		m_voxelTypeId = _voxelTypeId;
-		m_userPointer = _userPointer;
-		m_collisionShape = _collisionShape;
-		m_collisionOffset = _collisionOffset;
-		m_friction = _friction;
-		m_restitution = _restitution;
-		m_rollingFriction = _rollingFriction;
-	}
+			: m_tracable(_traceable),m_blocking(_blocking),m_voxelTypeId(_voxelTypeId),m_voxelPosition(_voxelPosition),
+			  m_collisionShape(_collisionShape),m_friction(_friction),m_restitution(_restitution),m_rollingFriction(_rollingFriction)
+	{}
+
+	SIMD_FORCE_INLINE bool isEmpty(){return m_voxelTypeId == -1;}
 };
 
 /// Provider of voxel information for a given voxel position

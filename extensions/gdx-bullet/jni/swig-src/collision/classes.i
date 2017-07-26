@@ -41,6 +41,7 @@ SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_btFace_t, com.badlogic.gdx.physic
 SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_btIndexedMesh_t, com.badlogic.gdx.physics.bullet.collision)
 SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_btQuantizedBvhNode_t, com.badlogic.gdx.physics.bullet.collision)
 SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_btSimplePair_t, com.badlogic.gdx.physics.bullet.collision)
+SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_btVoxelInfo_t, com.badlogic.gdx.physics.bullet.collision)
 SPECIFY_CLASS(SWIGTYPE_p_btAlignedObjectArrayT_int_t, com.badlogic.gdx.physics.bullet.collision)
 SPECIFY_CLASS(SWIGTYPE_p_btSerializer, com.badlogic.gdx.physics.bullet.collision)
 SPECIFY_CLASS(SWIGTYPE_p_f_p_q_const__btCollisionShape_p_q_const__btCollisionShape__bool, com.badlogic.gdx.physics.bullet.collision)

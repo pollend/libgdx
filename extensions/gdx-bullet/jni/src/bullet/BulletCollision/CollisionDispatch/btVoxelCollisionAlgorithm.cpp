@@ -152,7 +152,7 @@ void btVoxelCollisionAlgorithm::processCollision (const btCollisionObjectWrapper
 			btTransform voxelTranform;
 			voxelTranform.setIdentity();
 			voxelTranform.setOrigin(btVector3(collisionInfo.position.x * scale.x() + info.m_collisionOffset.x(), collisionInfo.position.y * scale.y() + info.m_collisionOffset.y(), collisionInfo.position.z * scale.z() + info.m_collisionOffset.z()));
-			btCollisionObjectWrapper voxelWrap(colObjWrap, info.m_collisionShape, colObjWrap->getCollisionObject(), voxelTranform, -1, -1);//, info.m_userPointer, info.m_friction, info.m_restitution, info.m_rollingFriction);
+			btCollisionObjectWrapper voxelWrap(colObjWrap, info.m_collisionShape, colObjWrap->getCollisionObject(), voxelTranform, -1, -1,info);//, info.m_userPointer, info.m_friction, info.m_restitution, info.m_rollingFriction);
 
 			// Add new algorithm if necessary
 			if (!collisionInfo.algorithm) {
