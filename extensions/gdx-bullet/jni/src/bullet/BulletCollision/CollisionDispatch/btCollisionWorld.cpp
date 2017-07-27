@@ -626,6 +626,11 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 
 					int next;
 					if (tNext[0] < tNext[1]) {
+						if(tNext[0] < tNext[2])
+						{
+
+						} else
+						{}
 						next = (tNext[0] < tNext[2]) ? 0 : 2;
 					}
 					else {
@@ -941,7 +946,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 
 						LocalInfoAdder my_cb(index, &m_resultCallback);
 
-						btCollisionObjectWrapper tmpObj(m_colObjWrap, childCollisionShape, m_colObjWrap->getCollisionObject(), childWorldTrans, -1, index, btVoxelInfo());
+						btCollisionObjectWrapper tmpObj(m_colObjWrap, childCollisionShape, m_colObjWrap->getCollisionObject(), childWorldTrans, -1, index, m_colObjWrap->getVoxelInfo());
 
 						objectQuerySingleInternal(m_castShape, m_convexFromTrans, m_convexToTrans, &tmpObj, my_cb, m_allowedPenetration);
 					}
@@ -1273,7 +1278,7 @@ struct btSingleContactCallback : public btBroadphaseAabbCallback
 	btCollisionObject* m_collisionObject;
 	btCollisionWorld*	m_world;
 	btCollisionWorld::ContactResultCallback&	m_resultCallback;
-	
+
 	
 	btSingleContactCallback(btCollisionObject* collisionObject, btCollisionWorld* world,btCollisionWorld::ContactResultCallback& resultCallback)
 		:m_collisionObject(collisionObject),

@@ -26,7 +26,6 @@ subject to the following restrictions:
 /// Information on the contents of a single voxel
 ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 {
-	BT_DECLARE_ALIGNED_ALLOCATOR();
 	/// Whether this voxel can be hit by ray traces
 	bool				m_tracable;
 	/// Whether the voxel blocks rigid bodies
@@ -51,18 +50,7 @@ ATTRIBUTE_ALIGNED16(struct) btVoxelInfo
 	btScalar			m_rollingFriction;
 
 	/**@brief No initialization constructor */
-	SIMD_FORCE_INLINE btVoxelInfo()
-	{
-		m_tracable = false;
-		m_blocking = false;
-		m_voxelPosition = btVector3(0,0,0);
-		m_collisionShape = 0;
-		m_collisionOffset = btVector3(0,0,0);
-		m_friction = 0;
-		m_restitution = 0;
-		m_rollingFriction = 0;
-		m_voxelTypeId = -1;
-	}
+	SIMD_FORCE_INLINE btVoxelInfo() {}
 
 	/**@brief Copy constructor */
 	SIMD_FORCE_INLINE btVoxelInfo (const btVoxelInfo& other)

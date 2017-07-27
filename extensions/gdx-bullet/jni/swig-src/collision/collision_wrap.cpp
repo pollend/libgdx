@@ -32534,28 +32534,50 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btCollisionObjectWrapper_1getVoxelInfo(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
-  btVoxelInfo *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  result = (btVoxelInfo *) &((btCollisionObjectWrapper const *)arg1)->getVoxelInfo();
-  *(btVoxelInfo **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4, jint jarg5, jint jarg6) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4, jlong jarg5, jobject jarg5_, jint jarg6, jint jarg7) {
   jlong jresult = 0 ;
   btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
   btCollisionShape *arg2 = (btCollisionShape *) 0 ;
   btCollisionObject *arg3 = (btCollisionObject *) 0 ;
   btTransform *arg4 = 0 ;
-  int arg5 ;
+  btVoxelInfo *arg5 = 0 ;
+  int arg6 ;
+  int arg7 ;
+  CollisionObjectWrapper *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  (void)jarg5_;
+  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
+  arg2 = *(btCollisionShape **)&jarg2; 
+  arg3 = *(btCollisionObject **)&jarg3; 
+  btTransform local_arg4;
+  gdx_setbtTransformFromMatrix4(jenv, local_arg4, jarg4);
+  arg4 = &local_arg4;
+  gdxAutoCommitMatrix4 auto_commit_arg4(jenv, jarg4, &local_arg4);
+  arg5 = *(btVoxelInfo **)&jarg5;
+  if (!arg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
+  arg6 = (int)jarg6; 
+  arg7 = (int)jarg7; 
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4,*arg5,arg6,arg7);
+  *(CollisionObjectWrapper **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4, jlong jarg5, jobject jarg5_, jint jarg6) {
+  jlong jresult = 0 ;
+  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
+  btCollisionShape *arg2 = (btCollisionShape *) 0 ;
+  btCollisionObject *arg3 = (btCollisionObject *) 0 ;
+  btTransform *arg4 = 0 ;
+  btVoxelInfo *arg5 = 0 ;
   int arg6 ;
   CollisionObjectWrapper *result = 0 ;
   
@@ -32564,6 +32586,7 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jarg1_;
   (void)jarg2_;
   (void)jarg3_;
+  (void)jarg5_;
   arg1 = *(btCollisionObjectWrapper **)&jarg1; 
   arg2 = *(btCollisionShape **)&jarg2; 
   arg3 = *(btCollisionObject **)&jarg3; 
@@ -32571,20 +32594,91 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   gdx_setbtTransformFromMatrix4(jenv, local_arg4, jarg4);
   arg4 = &local_arg4;
   gdxAutoCommitMatrix4 auto_commit_arg4(jenv, jarg4, &local_arg4);
-  arg5 = (int)jarg5; 
+  arg5 = *(btVoxelInfo **)&jarg5;
+  if (!arg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg6 = (int)jarg6; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4,arg5,arg6);
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4,*arg5,arg6);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4, jint jarg5) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4, jlong jarg5, jobject jarg5_) {
   jlong jresult = 0 ;
   btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
   btCollisionShape *arg2 = (btCollisionShape *) 0 ;
   btCollisionObject *arg3 = (btCollisionObject *) 0 ;
   btTransform *arg4 = 0 ;
+  btVoxelInfo *arg5 = 0 ;
+  CollisionObjectWrapper *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  (void)jarg5_;
+  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
+  arg2 = *(btCollisionShape **)&jarg2; 
+  arg3 = *(btCollisionObject **)&jarg3; 
+  btTransform local_arg4;
+  gdx_setbtTransformFromMatrix4(jenv, local_arg4, jarg4);
+  arg4 = &local_arg4;
+  gdxAutoCommitMatrix4 auto_commit_arg4(jenv, jarg4, &local_arg4);
+  arg5 = *(btVoxelInfo **)&jarg5;
+  if (!arg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4,*arg5);
+  *(CollisionObjectWrapper **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3, jlong jarg4, jobject jarg4_, jint jarg5, jint jarg6) {
+  jlong jresult = 0 ;
+  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg4 = 0 ;
+  int arg5 ;
+  int arg6 ;
+  CollisionObjectWrapper *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg4_;
+  arg1 = *(btCollisionShape **)&jarg1; 
+  arg2 = *(btCollisionObject **)&jarg2; 
+  btTransform local_arg3;
+  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
+  arg3 = &local_arg3;
+  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg4 = *(btVoxelInfo **)&jarg4;
+  if (!arg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
+  arg5 = (int)jarg5; 
+  arg6 = (int)jarg6; 
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3,*arg4,arg5,arg6);
+  *(CollisionObjectWrapper **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3, jlong jarg4, jobject jarg4_, jint jarg5) {
+  jlong jresult = 0 ;
+  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg4 = 0 ;
   int arg5 ;
   CollisionObjectWrapper *result = 0 ;
   
@@ -32592,52 +32686,60 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  (void)jarg3_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  arg2 = *(btCollisionShape **)&jarg2; 
-  arg3 = *(btCollisionObject **)&jarg3; 
-  btTransform local_arg4;
-  gdx_setbtTransformFromMatrix4(jenv, local_arg4, jarg4);
-  arg4 = &local_arg4;
-  gdxAutoCommitMatrix4 auto_commit_arg4(jenv, jarg4, &local_arg4);
+  (void)jarg4_;
+  arg1 = *(btCollisionShape **)&jarg1; 
+  arg2 = *(btCollisionObject **)&jarg2; 
+  btTransform local_arg3;
+  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
+  arg3 = &local_arg3;
+  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg4 = *(btVoxelInfo **)&jarg4;
+  if (!arg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg5 = (int)jarg5; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4,arg5);
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3,*arg4,arg5);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jobject jarg4) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3, jlong jarg4, jobject jarg4_) {
   jlong jresult = 0 ;
-  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
-  btCollisionShape *arg2 = (btCollisionShape *) 0 ;
-  btCollisionObject *arg3 = (btCollisionObject *) 0 ;
-  btTransform *arg4 = 0 ;
+  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg4 = 0 ;
   CollisionObjectWrapper *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  (void)jarg3_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  arg2 = *(btCollisionShape **)&jarg2; 
-  arg3 = *(btCollisionObject **)&jarg3; 
-  btTransform local_arg4;
-  gdx_setbtTransformFromMatrix4(jenv, local_arg4, jarg4);
-  arg4 = &local_arg4;
-  gdxAutoCommitMatrix4 auto_commit_arg4(jenv, jarg4, &local_arg4);
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,*arg4);
+  (void)jarg4_;
+  arg1 = *(btCollisionShape **)&jarg1; 
+  arg2 = *(btCollisionObject **)&jarg2; 
+  btTransform local_arg3;
+  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
+  arg3 = &local_arg3;
+  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg4 = *(btVoxelInfo **)&jarg4;
+  if (!arg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3,*arg4);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3, jint jarg4, jint jarg5) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4, jint jarg5) {
   jlong jresult = 0 ;
-  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
   btCollisionObject *arg2 = (btCollisionObject *) 0 ;
-  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg3 = 0 ;
   int arg4 ;
   int arg5 ;
   CollisionObjectWrapper *result = 0 ;
@@ -32646,12 +32748,14 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionShape **)&jarg1; 
+  (void)jarg3_;
+  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
   arg2 = *(btCollisionObject **)&jarg2; 
-  btTransform local_arg3;
-  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
-  arg3 = &local_arg3;
-  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg3 = *(btVoxelInfo **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg4 = (int)jarg4; 
   arg5 = (int)jarg5; 
   result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3,arg4,arg5);
@@ -32660,11 +32764,11 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4) {
   jlong jresult = 0 ;
-  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
   btCollisionObject *arg2 = (btCollisionObject *) 0 ;
-  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg3 = 0 ;
   int arg4 ;
   CollisionObjectWrapper *result = 0 ;
   
@@ -32672,12 +32776,14 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionShape **)&jarg1; 
+  (void)jarg3_;
+  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
   arg2 = *(btCollisionObject **)&jarg2; 
-  btTransform local_arg3;
-  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
-  arg3 = &local_arg3;
-  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg3 = *(btVoxelInfo **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg4 = (int)jarg4; 
   result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3,arg4);
   *(CollisionObjectWrapper **)&jresult = result; 
@@ -32685,33 +32791,35 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jobject jarg3) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
   jlong jresult = 0 ;
-  btCollisionShape *arg1 = (btCollisionShape *) 0 ;
+  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
   btCollisionObject *arg2 = (btCollisionObject *) 0 ;
-  btTransform *arg3 = 0 ;
+  btVoxelInfo *arg3 = 0 ;
   CollisionObjectWrapper *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionShape **)&jarg1; 
+  (void)jarg3_;
+  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
   arg2 = *(btCollisionObject **)&jarg2; 
-  btTransform local_arg3;
-  gdx_setbtTransformFromMatrix4(jenv, local_arg3, jarg3);
-  arg3 = &local_arg3;
-  gdxAutoCommitMatrix4 auto_commit_arg3(jenv, jarg3, &local_arg3);
+  arg3 = *(btVoxelInfo **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,*arg3);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_19(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jint jarg4) {
   jlong jresult = 0 ;
-  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
-  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
+  btVoxelInfo *arg2 = 0 ;
   int arg3 ;
   int arg4 ;
   CollisionObjectWrapper *result = 0 ;
@@ -32720,20 +32828,24 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  arg2 = *(btCollisionObject **)&jarg2; 
+  arg1 = *(btCollisionObject **)&jarg1; 
+  arg2 = *(btVoxelInfo **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg3 = (int)jarg3; 
   arg4 = (int)jarg4; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3,arg4);
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,*arg2,arg3,arg4);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_110(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
   jlong jresult = 0 ;
-  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
-  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
+  btVoxelInfo *arg2 = 0 ;
   int arg3 ;
   CollisionObjectWrapper *result = 0 ;
   
@@ -32741,79 +32853,36 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  arg2 = *(btCollisionObject **)&jarg2; 
+  arg1 = *(btCollisionObject **)&jarg1; 
+  arg2 = *(btVoxelInfo **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
   arg3 = (int)jarg3; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3);
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,*arg2,arg3);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_111(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
-  btCollisionObjectWrapper *arg1 = (btCollisionObjectWrapper *) 0 ;
-  btCollisionObject *arg2 = (btCollisionObject *) 0 ;
+  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
+  btVoxelInfo *arg2 = 0 ;
   CollisionObjectWrapper *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(btCollisionObjectWrapper **)&jarg1; 
-  arg2 = *(btCollisionObject **)&jarg2; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2);
-  *(CollisionObjectWrapper **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_19(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
-  jlong jresult = 0 ;
-  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  CollisionObjectWrapper *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
   arg1 = *(btCollisionObject **)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2,arg3);
-  *(CollisionObjectWrapper **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_110(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jlong jresult = 0 ;
-  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
-  int arg2 ;
-  CollisionObjectWrapper *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(btCollisionObject **)&jarg1; 
-  arg2 = (int)jarg2; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,arg2);
-  *(CollisionObjectWrapper **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1CollisionObjectWrapper_1_1SWIG_111(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  btCollisionObject *arg1 = (btCollisionObject *) 0 ;
-  CollisionObjectWrapper *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(btCollisionObject **)&jarg1; 
-  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1);
+  arg2 = *(btVoxelInfo **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo & reference is null");
+    return 0;
+  } 
+  result = (CollisionObjectWrapper *)new CollisionObjectWrapper(arg1,*arg2);
   *(CollisionObjectWrapper **)&jresult = result; 
   return jresult;
 }

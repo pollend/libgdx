@@ -129,8 +129,4 @@ public class btCollisionObjectWrapper extends BulletBase {
     return (cPtr == 0) ? null : btCollisionShape.newDerivedObject(cPtr, false);
   }
 
-  public btVoxelInfo getVoxelInfo() {
-    return new btVoxelInfo(CollisionJNI.btCollisionObjectWrapper_getVoxelInfo(swigCPtr, this), false);
-  }
-
 }
