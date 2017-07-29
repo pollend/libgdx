@@ -62,10 +62,9 @@ void btVoxelCollisionAlgorithm::processCollision (const btCollisionObjectWrapper
 	btVector3 aabbMin;
 	btVector3 aabbMax;
 	otherObjWrap->getCollisionShape()->getAabb(otherTransform, aabbMin, aabbMax);
-	
-	btVector3 scale = voxelShape->getLocalScaling();
-	btVector3i regionMin(static_cast <int> (floor(aabbMin.x() / scale.x() + .5)), static_cast <int> (floor(aabbMin.y() / scale.y() + .5)), static_cast <int> (floor(aabbMin.z() / scale.z() + .5)));
-	btVector3i regionMax(static_cast <int> (floor(aabbMax.x() / scale.x() + .5)), static_cast <int> (floor(aabbMax.y() / scale.y() + .5)), static_cast <int> (floor(aabbMax.z() / scale.z() + .5)));
+
+	btVector3i regionMin(static_cast <int> (floor(aabbMin.x() + .5f)), static_cast <int> (floor(aabbMin.y() + .5f)), static_cast <int> (floor(aabbMin.z() + .5f)));
+	btVector3i regionMax(static_cast <int> (floor(aabbMax.x() + .5)), static_cast <int> (floor(aabbMax.y() + .5)), static_cast <int> (floor(aabbMax.z() + .5)));
 
 	// Remove out of bounds collision info
 	int numChildren = m_voxelCollisionInfo.size();
@@ -100,7 +99,7 @@ void btVoxelCollisionAlgorithm::processCollision (const btCollisionObjectWrapper
 			for (int z = regionMin.z; z <= regionMax.z; ++z) {
 				if ((x < m_lastMin.x || x > m_lastMax.x)
 					|| (y < m_lastMin.y || y > m_lastMax.y)
-					|| (z < m_lastMin.z || z > m_lastMax.z)) 
+					|| (z < m_lastMin.z || z > m_lastMax.z))
 				{
 					int newIndex = m_voxelCollisionInfo.size();
 					m_voxelCollisionInfo.resize(newIndex + 1);
@@ -114,7 +113,6 @@ void btVoxelCollisionAlgorithm::processCollision (const btCollisionObjectWrapper
 	}
 
 	{
-		int i;
 		btManifoldArray manifoldArray;
 		for (i = 0; i < m_voxelCollisionInfo.size(); i++)
 		{
@@ -149,10 +147,10 @@ void btVoxelCollisionAlgorithm::processCollision (const btCollisionObjectWrapper
 			}
 		}		
 		if (info.m_blocking) {
-			btTransform voxelTranform;
-			voxelTranform.setIdentity();
-			voxelTranform.setOrigin(btVector3(collisionInfo.position.x * scale.x() + info.m_collisionOffset.x(), collisionInfo.position.y * scale.y() + info.m_collisionOffset.y(), collisionInfo.position.z * scale.z() + info.m_collisionOffset.z()));
-			btCollisionObjectWrapper voxelWrap(colObjWrap, info.m_collisionShape, colObjWrap->getCollisionObject(), voxelTranform, -1, -1,info);//, info.m_userPointer, info.m_friction, info.m_restitution, info.m_rollingFriction);
+			btTransform voxelTransform;
+			voxelTransform.setIdentity();
+			voxelTransform.setOrigin(btVector3(collisionInfo.position.x + info.m_collisionOffset.x(), collisionInfo.position.y + info.m_collisionOffset.y(), collisionInfo.position.z + info.m_collisionOffset.z()));
+			btCollisionObjectWrapper voxelWrap(colObjWrap, info.m_collisionShape, colObjWrap->getCollisionObject(), voxelTransform, -1, -1,info);
 
 			// Add new algorithm if necessary
 			if (!collisionInfo.algorithm) {

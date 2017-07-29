@@ -200,7 +200,7 @@ public:
 		LocalShapeInfo*			m_localShapeInfo;
 		btVector3				m_hitNormalLocal;
 		btScalar				m_hitFraction;
-		const btVoxelInfo&      m_voxelInfo;
+        btVoxelInfo      m_voxelInfo;
 
 	};
 
@@ -329,7 +329,7 @@ public:
 			const btVector3&		hitNormalLocal,
 			const btVector3&		hitPointLocal,
 			btScalar hitFraction,
-            btVoxelInfo voxelInfo
+            const btVoxelInfo& voxelInfo
 			)
 		:m_hitCollisionObject(hitCollisionObject),
 		m_localShapeInfo(localShapeInfo),

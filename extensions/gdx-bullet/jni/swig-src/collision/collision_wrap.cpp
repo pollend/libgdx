@@ -37528,6 +37528,20 @@ SWIGEXPORT jfloat JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisi
 }
 
 
+SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_LocalRayResult_1voxelInfo_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  btCollisionWorld::LocalRayResult *arg1 = (btCollisionWorld::LocalRayResult *) 0 ;
+  btVoxelInfo *arg2 = (btVoxelInfo *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(btCollisionWorld::LocalRayResult **)&jarg1; 
+  arg2 = *(btVoxelInfo **)&jarg2; 
+  if (arg1) (arg1)->m_voxelInfo = *arg2;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_LocalRayResult_1voxelInfo_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   btCollisionWorld::LocalRayResult *arg1 = (btCollisionWorld::LocalRayResult *) 0 ;
@@ -37537,7 +37551,7 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   (void)jcls;
   (void)jarg1_;
   arg1 = *(btCollisionWorld::LocalRayResult **)&jarg1; 
-  result = (btVoxelInfo *) &(btVoxelInfo const &) ((arg1)->m_voxelInfo);
+  result = (btVoxelInfo *)& ((arg1)->m_voxelInfo);
   *(btVoxelInfo **)&jresult = result; 
   return jresult;
 }
@@ -38383,8 +38397,7 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   btVector3 *arg3 = 0 ;
   btVector3 *arg4 = 0 ;
   btScalar arg5 ;
-  btVoxelInfo arg6 ;
-  btVoxelInfo *argp6 ;
+  btVoxelInfo *arg6 = 0 ;
   btCollisionWorld::LocalConvexResult *result = 0 ;
   
   (void)jenv;
@@ -38403,13 +38416,12 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
   arg4 = &local_arg4;
   gdxAutoCommitVector3 auto_commit_arg4(jenv, jarg4, &local_arg4);
   arg5 = (btScalar)jarg5; 
-  argp6 = *(btVoxelInfo **)&jarg6; 
-  if (!argp6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null btVoxelInfo");
+  arg6 = *(btVoxelInfo **)&jarg6;
+  if (!arg6) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo const & reference is null");
     return 0;
-  }
-  arg6 = *argp6; 
-  result = (btCollisionWorld::LocalConvexResult *)new btCollisionWorld::LocalConvexResult((btCollisionObject const *)arg1,arg2,(btVector3 const &)*arg3,(btVector3 const &)*arg4,arg5,arg6);
+  } 
+  result = (btCollisionWorld::LocalConvexResult *)new btCollisionWorld::LocalConvexResult((btCollisionObject const *)arg1,arg2,(btVector3 const &)*arg3,(btVector3 const &)*arg4,arg5,(btVoxelInfo const &)*arg6);
   *(btCollisionWorld::LocalConvexResult **)&jresult = result; 
   return jresult;
 }

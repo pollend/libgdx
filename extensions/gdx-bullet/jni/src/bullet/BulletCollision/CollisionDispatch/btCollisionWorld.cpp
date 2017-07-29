@@ -342,7 +342,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					btCollisionWorld::RayResultCallback* m_resultCallback;
 					const btCollisionObject*	m_collisionObject;
 					const btConcaveShape*	m_triangleMesh;
-                    const btVoxelInfo& m_voxelInfo;
+                    btVoxelInfo m_voxelInfo;
 					btTransform m_colObjWorldTransform;
 
 					BridgeTriangleRaycastCallback( const btVector3& from,const btVector3& to,
@@ -409,8 +409,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					btCollisionWorld::RayResultCallback* m_resultCallback;
 					const btCollisionObject*	m_collisionObject;
 					btConcaveShape*	m_triangleMesh;
-                    const btVoxelInfo& m_voxelInfo;
-
+                    btVoxelInfo m_voxelInfo;
 					btTransform m_colObjWorldTransform;
 
 					BridgeTriangleRaycastCallback( const btVector3& from,const btVector3& to,
@@ -575,72 +574,104 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 				const btVoxelShape* voxelShape = (btVoxelShape*) collisionShape;
 				const btVoxelContentProvider* contentProvider = voxelShape->getContentProvider();
 
-				int currentVox[3];
-				btVector3 distance;
-				btVector3 delta;
-				btVector3 tNext;
-				int steps = 1;
-				int increments[3];
+                int currentVoxX = floor(rayFromTrans.getOrigin()[0] + 0.5f);
+                int currentVoxY = floor(rayFromTrans.getOrigin()[1] + 0.5f);
+                int currentVoxZ = floor(rayFromTrans.getOrigin()[2] + 0.5f);
+                float dx = abs(rayToTrans.getOrigin()[0] - rayFromTrans.getOrigin()[0]);
+                float dy = abs(rayToTrans.getOrigin()[1] - rayFromTrans.getOrigin()[1]);
+                float dz = abs(rayToTrans.getOrigin()[2] - rayFromTrans.getOrigin()[2]);
+                float invDx = 1.0f / dx;
+                float invDy = 1.0f / dy;
+                float invDz = 1.0f / dz;
+                float tNextX = invDx;
+                float tNextY = invDy;
+                float tNextZ = invDz;
 
-				for (int i = 0; i < 3; ++i) {
-					currentVox[i] = static_cast <int> (floor(rayFromTrans.getOrigin()[i] + 0.5f));
-					distance[i] = btFabs(rayToTrans.getOrigin()[i] - rayFromTrans.getOrigin()[i]);
-					delta[i] = 1.0f / distance[i];
-					
-					if (rayToTrans.getOrigin()[i] > rayFromTrans.getOrigin()[i]) 
-					{
-						increments[i] = 1;
-						steps += static_cast <int> (floor(rayToTrans.getOrigin()[i] + 0.5f)) - currentVox[i];
-						tNext[i] = (currentVox[i] + 0.5f - rayFromTrans.getOrigin()[i]) * delta[i];
-					}
-					else if (rayToTrans.getOrigin()[i] < rayFromTrans.getOrigin()[i]) 
-					{
-						increments[i] = -1;
-						steps += currentVox[i] - static_cast <int> (floor(rayToTrans.getOrigin()[i] + 0.5f));
-						tNext[i] = (rayFromTrans.getOrigin()[i] - currentVox[i] + 0.5f) * delta[i];
-					} 
-					else 
-					{
-						increments[i] = 0;
-						tNext[i] = delta[i];
-					}
-				}
 
-				for (; steps > 0; --steps) {
-					btVoxelInfo childInfo = contentProvider->getVoxel(currentVox[0], currentVox[1], currentVox[2]);
-					if (childInfo.m_tracable) {
-						btVector3 pos(static_cast <btScalar> (currentVox[0]), static_cast <btScalar> (currentVox[1]), static_cast <btScalar> (currentVox[2]));
-						pos += childInfo.m_collisionOffset;
+                float t = 0;
+                int number = 1;
+                int xIncrement = 0;
+                if(rayToTrans.getOrigin()[0] > rayFromTrans.getOrigin()[0])
+                {
+                    xIncrement = 1;
+                    number += floor(rayToTrans.getOrigin()[0] + .5f) - currentVoxX;
+                    tNextX = (currentVoxX + 0.5f - rayFromTrans.getOrigin()[0]) * invDx;
+                }
+                else if(rayToTrans.getOrigin()[0] < rayFromTrans.getOrigin()[0])
+                {
+                    xIncrement = -1;
+                    number += currentVoxX - floor(rayToTrans.getOrigin()[0] + .5f);
+                    tNextX = (rayFromTrans.getOrigin()[0] - currentVoxX + 0.5f) * invDx;
+                }
 
-						btTransform childTransform(btQuaternion(0, 0, 0, 1), pos);
+                int yIncrement = 0;
+                if(rayToTrans.getOrigin()[1] > rayFromTrans.getOrigin()[1])
+                {
+                    yIncrement = 1;
+                    number += floor(rayToTrans.getOrigin()[1] + .5f) - currentVoxY;
+                    tNextY = (currentVoxY + 0.5f - rayFromTrans.getOrigin()[1]) * invDy;
+                }
+                else if(rayToTrans.getOrigin()[1] < rayFromTrans.getOrigin()[1])
+                {
+                    yIncrement = -1;
+                    number += currentVoxY - floor(rayToTrans.getOrigin()[1] + .5f);
+                    tNextY = (rayFromTrans.getOrigin()[1] - currentVoxY + 0.5f) * invDy;
+                }
 
-						btCollisionObjectWrapper tmpOb(collisionObjectWrap, childInfo.m_collisionShape, collisionObjectWrap->getCollisionObject(), childTransform, -1, -1,childInfo);
+                int zIncrement = 0;
+                if(rayToTrans.getOrigin()[2] > rayFromTrans.getOrigin()[2])
+                {
+                    zIncrement = 1;
+                    number += floor(rayToTrans.getOrigin()[2] + .5f) - currentVoxZ;
+                    tNextZ = (currentVoxZ + 0.5f - rayFromTrans.getOrigin()[2]) * invDz;
+                }
+                else if(rayToTrans.getOrigin()[2] < rayFromTrans.getOrigin()[2])
+                {
+                    zIncrement = -1;
+                    number += currentVoxZ - floor(rayToTrans.getOrigin()[2] + .5f);
+                    tNextZ = (rayFromTrans.getOrigin()[2] - currentVoxZ + 0.5f) * invDz;
+                }
 
-						rayTestSingleInternal(rayFromTrans, rayToTrans,
-							&tmpOb,
-							resultCallback);
-						
-						// Early out if hit - need to consider this (what if user wants to go deeper)
-						break;
-					}
+                for(; number > 0; --number) {
+                    btVoxelInfo childInfo = contentProvider->getVoxel(currentVoxX, currentVoxY, currentVoxZ);
+                    if (childInfo.m_tracable) {
+                        btVector3 pos = btVector3(currentVoxX, currentVoxY, currentVoxZ);
+                        pos += childInfo.m_collisionOffset;
+                        btTransform transform = btTransform(btQuaternion(0, 0, 0, 1), pos);
 
-					int next;
-					if (tNext[0] < tNext[1]) {
-						if(tNext[0] < tNext[2])
-						{
+                        btCollisionObjectWrapper tmpOb(collisionObjectWrap, childInfo.m_collisionShape,
+                                                       collisionObjectWrap->getCollisionObject(), transform, -1, -1,
+                                                       childInfo);
+                        rayTestSingleInternal(rayFromTrans, rayToTrans,
+                                              &tmpOb,
+                                              resultCallback);
+                    }
 
-						} else
-						{}
-						next = (tNext[0] < tNext[2]) ? 0 : 2;
-					}
-					else {
-						next = (tNext[1] < tNext[2]) ? 1 : 2;
-					}
-					tNext[next] += delta[next];
-					currentVox[next] += increments[next];
-				}
+                    if (tNextX < tNextY) {
+                        if (tNextX < tNextZ) {
+                            currentVoxX += xIncrement;
+                            t = tNextX;
+                            tNextX += invDx;
+                        } else {
+                            currentVoxZ += zIncrement;
+                            t = tNextZ;
+                            tNextZ += invDz;
+                        }
+                    } else {
+                        if (tNextY < tNextZ) {
+                            currentVoxY += yIncrement;
+                            t = tNextY;
+                            tNextY += invDy;
+                        } else {
+                            currentVoxZ += zIncrement;
+                            t = tNextZ;
+                            tNextZ += invDz;
+                        }
+
+                    }
+                }
+
 			}
-			
 		}
 	}
 }

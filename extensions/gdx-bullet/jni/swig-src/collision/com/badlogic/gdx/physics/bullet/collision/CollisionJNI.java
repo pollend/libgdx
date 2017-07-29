@@ -1966,6 +1966,7 @@ public class CollisionJNI {
   public final static native long LocalRayResult_hitNormalLocal_get(long jarg1, LocalRayResult jarg1_);
   public final static native void LocalRayResult_hitFraction_set(long jarg1, LocalRayResult jarg1_, float jarg2);
   public final static native float LocalRayResult_hitFraction_get(long jarg1, LocalRayResult jarg1_);
+  public final static native void LocalRayResult_voxelInfo_set(long jarg1, LocalRayResult jarg1_, long jarg2, btVoxelInfo jarg2_);
   public final static native long LocalRayResult_voxelInfo_get(long jarg1, LocalRayResult jarg1_);
   public final static native void delete_LocalRayResult(long jarg1);
   public final static native void RayResultCallback_closestHitFraction_set(long jarg1, RayResultCallback jarg1_, float jarg2);
