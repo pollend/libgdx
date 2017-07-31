@@ -743,8 +743,12 @@ public class CollisionJNI {
   public final static native boolean btVoxelInfo_blocking_get(long jarg1, btVoxelInfo jarg1_);
   public final static native void btVoxelInfo_voxelTypeId_set(long jarg1, btVoxelInfo jarg1_, int jarg2);
   public final static native int btVoxelInfo_voxelTypeId_get(long jarg1, btVoxelInfo jarg1_);
-  public final static native void btVoxelInfo_voxelPosition_set(long jarg1, btVoxelInfo jarg1_, long jarg2, btVector3 jarg2_);
-  public final static native long btVoxelInfo_voxelPosition_get(long jarg1, btVoxelInfo jarg1_);
+  public final static native void btVoxelInfo_x_set(long jarg1, btVoxelInfo jarg1_, int jarg2);
+  public final static native int btVoxelInfo_x_get(long jarg1, btVoxelInfo jarg1_);
+  public final static native void btVoxelInfo_y_set(long jarg1, btVoxelInfo jarg1_, int jarg2);
+  public final static native int btVoxelInfo_y_get(long jarg1, btVoxelInfo jarg1_);
+  public final static native void btVoxelInfo_z_set(long jarg1, btVoxelInfo jarg1_, int jarg2);
+  public final static native int btVoxelInfo_z_get(long jarg1, btVoxelInfo jarg1_);
   public final static native void btVoxelInfo_collisionShape_set(long jarg1, btVoxelInfo jarg1_, long jarg2, btCollisionShape jarg2_);
   public final static native long btVoxelInfo_collisionShape_get(long jarg1, btVoxelInfo jarg1_);
   public final static native void btVoxelInfo_collisionOffset_set(long jarg1, btVoxelInfo jarg1_, long jarg2, btVector3 jarg2_);
@@ -757,7 +761,7 @@ public class CollisionJNI {
   public final static native float btVoxelInfo_rollingFriction_get(long jarg1, btVoxelInfo jarg1_);
   public final static native long new_btVoxelInfo__SWIG_0();
   public final static native long new_btVoxelInfo__SWIG_1(long jarg1, btVoxelInfo jarg1_);
-  public final static native long new_btVoxelInfo__SWIG_2(boolean jarg1, boolean jarg2, int jarg3, Vector3 jarg4, long jarg5, btCollisionShape jarg5_, Vector3 jarg6, float jarg7, float jarg8, float jarg9);
+  public final static native long new_btVoxelInfo__SWIG_2(boolean jarg1, boolean jarg2, int jarg3, int jarg4, int jarg5, int jarg6, long jarg7, btCollisionShape jarg7_, Vector3 jarg8, float jarg9, float jarg10, float jarg11);
   public final static native boolean btVoxelInfo_isEmpty(long jarg1, btVoxelInfo jarg1_);
   public final static native void delete_btVoxelInfo(long jarg1);
   public final static native long btVoxelContentProvider_getVoxel(long jarg1, btVoxelContentProvider jarg1_, int jarg2, int jarg3, int jarg4);

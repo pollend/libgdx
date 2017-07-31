@@ -82,13 +82,28 @@ public class btVoxelInfo extends BulletBase {
     return CollisionJNI.btVoxelInfo_voxelTypeId_get(swigCPtr, this);
   }
 
-  public void setVoxelPosition(btVector3 value) {
-    CollisionJNI.btVoxelInfo_voxelPosition_set(swigCPtr, this, btVector3.getCPtr(value), value);
+  public void setX(int value) {
+    CollisionJNI.btVoxelInfo_x_set(swigCPtr, this, value);
   }
 
-  public btVector3 getVoxelPosition() {
-    long cPtr = CollisionJNI.btVoxelInfo_voxelPosition_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new btVector3(cPtr, false);
+  public int getX() {
+    return CollisionJNI.btVoxelInfo_x_get(swigCPtr, this);
+  }
+
+  public void setY(int value) {
+    CollisionJNI.btVoxelInfo_y_set(swigCPtr, this, value);
+  }
+
+  public int getY() {
+    return CollisionJNI.btVoxelInfo_y_get(swigCPtr, this);
+  }
+
+  public void setZ(int value) {
+    CollisionJNI.btVoxelInfo_z_set(swigCPtr, this, value);
+  }
+
+  public int getZ() {
+    return CollisionJNI.btVoxelInfo_z_get(swigCPtr, this);
   }
 
   public void setCollisionShape(btCollisionShape value) {
@@ -141,8 +156,8 @@ public class btVoxelInfo extends BulletBase {
     this(CollisionJNI.new_btVoxelInfo__SWIG_1(btVoxelInfo.getCPtr(other), other), true);
   }
 
-  public btVoxelInfo(boolean _traceable, boolean _blocking, int _voxelTypeId, Vector3 _voxelPosition, btCollisionShape _collisionShape, Vector3 _collisionOffset, float _friction, float _restitution, float _rollingFriction) {
-    this(CollisionJNI.new_btVoxelInfo__SWIG_2(_traceable, _blocking, _voxelTypeId, _voxelPosition, btCollisionShape.getCPtr(_collisionShape), _collisionShape, _collisionOffset, _friction, _restitution, _rollingFriction), true);
+  public btVoxelInfo(boolean _traceable, boolean _blocking, int _voxelTypeId, int _x, int _y, int _z, btCollisionShape _collisionShape, Vector3 _collisionOffset, float _friction, float _restitution, float _rollingFriction) {
+    this(CollisionJNI.new_btVoxelInfo__SWIG_2(_traceable, _blocking, _voxelTypeId, _x, _y, _z, btCollisionShape.getCPtr(_collisionShape), _collisionShape, _collisionOffset, _friction, _restitution, _rollingFriction), true);
   }
 
   public boolean isEmpty() {

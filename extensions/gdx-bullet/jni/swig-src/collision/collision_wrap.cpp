@@ -17886,31 +17886,86 @@ SWIGEXPORT jint JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collision
 }
 
 
-SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1voxelPosition_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
-  btVector3 *arg2 = (btVector3 *) 0 ;
+  int arg2 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  (void)jarg2_;
   arg1 = *(btVoxelInfo **)&jarg1; 
-  arg2 = *(btVector3 **)&jarg2; 
-  if (arg1) (arg1)->m_voxelPosition = *arg2;
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->m_x = arg2;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1voxelPosition_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
   btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
-  btVector3 *result = 0 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(btVoxelInfo **)&jarg1; 
-  result = (btVector3 *)& ((arg1)->m_voxelPosition);
-  *(btVector3 **)&jresult = result; 
+  result = (int) ((arg1)->m_x);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(btVoxelInfo **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->m_y = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(btVoxelInfo **)&jarg1; 
+  result = (int) ((arg1)->m_y);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(btVoxelInfo **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->m_z = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelInfo_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  btVoxelInfo *arg1 = (btVoxelInfo *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(btVoxelInfo **)&jarg1; 
+  result = (int) ((arg1)->m_z);
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -18088,50 +18143,39 @@ SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collisio
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1btVoxelInfo_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jboolean jarg1, jboolean jarg2, jint jarg3, jobject jarg4, jlong jarg5, jobject jarg5_, jobject jarg6, jfloat jarg7, jfloat jarg8, jfloat jarg9) {
+SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_new_1btVoxelInfo_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jboolean jarg1, jboolean jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jlong jarg7, jobject jarg7_, jobject jarg8, jfloat jarg9, jfloat jarg10, jfloat jarg11) {
   jlong jresult = 0 ;
-  bool *arg1 = 0 ;
-  bool *arg2 = 0 ;
-  long *arg3 = 0 ;
-  btVector3 *arg4 = 0 ;
-  btCollisionShape *arg5 = (btCollisionShape *) (btCollisionShape *)0 ;
-  btVector3 *arg6 = 0 ;
-  btScalar *arg7 = 0 ;
-  btScalar *arg8 = 0 ;
-  btScalar *arg9 = 0 ;
-  bool temp1 ;
-  bool temp2 ;
-  long temp3 ;
-  btScalar temp7 ;
-  btScalar temp8 ;
-  btScalar temp9 ;
+  bool arg1 ;
+  bool arg2 ;
+  long arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  btCollisionShape *arg7 = (btCollisionShape *) (btCollisionShape *)0 ;
+  btVector3 *arg8 = 0 ;
+  btScalar arg9 ;
+  btScalar arg10 ;
+  btScalar arg11 ;
   btVoxelInfo *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg5_;
-  temp1 = jarg1 ? true : false; 
-  arg1 = &temp1; 
-  temp2 = jarg2 ? true : false; 
-  arg2 = &temp2; 
-  temp3 = (long)jarg3; 
-  arg3 = &temp3; 
-  btVector3 local_arg4;
-  gdx_setbtVector3FromVector3(jenv, local_arg4, jarg4);
-  arg4 = &local_arg4;
-  gdxAutoCommitVector3 auto_commit_arg4(jenv, jarg4, &local_arg4);
-  arg5 = *(btCollisionShape **)&jarg5; 
-  btVector3 local_arg6;
-  gdx_setbtVector3FromVector3(jenv, local_arg6, jarg6);
-  arg6 = &local_arg6;
-  gdxAutoCommitVector3 auto_commit_arg6(jenv, jarg6, &local_arg6);
-  temp7 = (btScalar)jarg7; 
-  arg7 = &temp7; 
-  temp8 = (btScalar)jarg8; 
-  arg8 = &temp8; 
-  temp9 = (btScalar)jarg9; 
-  arg9 = &temp9; 
-  result = (btVoxelInfo *)new btVoxelInfo((bool const &)*arg1,(bool const &)*arg2,(long const &)*arg3,(btVector3 const &)*arg4,arg5,(btVector3 const &)*arg6,(btScalar const &)*arg7,(btScalar const &)*arg8,(btScalar const &)*arg9);
+  (void)jarg7_;
+  arg1 = jarg1 ? true : false; 
+  arg2 = jarg2 ? true : false; 
+  arg3 = (long)jarg3; 
+  arg4 = (int)jarg4; 
+  arg5 = (int)jarg5; 
+  arg6 = (int)jarg6; 
+  arg7 = *(btCollisionShape **)&jarg7; 
+  btVector3 local_arg8;
+  gdx_setbtVector3FromVector3(jenv, local_arg8, jarg8);
+  arg8 = &local_arg8;
+  gdxAutoCommitVector3 auto_commit_arg8(jenv, jarg8, &local_arg8);
+  arg9 = (btScalar)jarg9; 
+  arg10 = (btScalar)jarg10; 
+  arg11 = (btScalar)jarg11; 
+  result = (btVoxelInfo *)new btVoxelInfo(arg1,arg2,arg3,arg4,arg5,arg6,arg7,(btVector3 const &)*arg8,arg9,arg10,arg11);
   *(btVoxelInfo **)&jresult = result; 
   return jresult;
 }
