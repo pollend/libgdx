@@ -670,7 +670,6 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 
                     }
                 }
-
 			}
 		}
 	}
@@ -906,7 +905,55 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 					concaveShape->processAllTriangles(&tccb,rayAabbMinLocal,rayAabbMaxLocal);
 				}
 			}
-		} else {
+		}
+        else if(collisionShape->isVoxel())
+        {
+            const btVoxelShape* voxelShape = (btVoxelShape*) collisionShape;
+            const btVoxelContentProvider* contentProvider = voxelShape->getContentProvider();
+
+            btVector3 minAABB1;
+			btVector3 maxAABB1;
+			btVector3 minAABB2;
+			btVector3 maxAABB2;
+            castShape->getAabb(convexFromTrans, minAABB1, maxAABB1);
+            castShape->getAabb(convexToTrans, minAABB2, maxAABB2);
+
+            int minX = floor(fmin(minAABB1[0], minAABB2[0]) + 0.5f);
+            int minY = floor(fmin(minAABB1[1], minAABB2[1]) + 0.5f);
+            int minZ = floor(fmin(minAABB1[2], minAABB2[2]) + 0.5f);
+
+            int maxX = floor(fmax(maxAABB1[0], maxAABB2[0]) + 0.5f);
+            int maxY = floor(fmax(maxAABB1[1], maxAABB2[1]) + 0.5f);
+            int maxZ = floor(fmax(maxAABB1[2], maxAABB2[2]) + 0.5f);
+            for (int x = minX; x <= maxX; ++x) {
+                for (int y = minY; y <= maxY; ++y) {
+                    for (int z = minZ; z <= maxZ; ++z) {
+                        btVoxelInfo childInfo = contentProvider->getVoxel(x, y, z);
+                        if(!childInfo.m_blocking){
+                            continue;
+                        }
+                        btVector3 pos = btVector3(x, y, z);
+                        pos += childInfo.m_collisionOffset;
+
+                        btTransform childWorldTrans;
+                        childWorldTrans.setIdentity();
+                        childWorldTrans.setOrigin(pos);
+
+						btCollisionObjectWrapper tmpOb(colObjWrap, childInfo.m_collisionShape,
+													   colObjWrap->getCollisionObject(), childWorldTrans, -1, -1,
+													   childInfo);
+
+						objectQuerySingleInternal(castShape, convexFromTrans, convexToTrans,
+                                          &tmpOb,
+										  resultCallback,
+										  allowedPenetration);
+
+
+                    }
+                }
+            }
+
+        } else {
 			if (collisionShape->isCompound())
 			{
 				struct	btCompoundLeafCallback : btDbvt::ICollide
