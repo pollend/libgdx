@@ -3306,44 +3306,36 @@ void SwigDirector_btInternalTriangleIndexCallback::swig_connect_director(JNIEnv 
 SwigDirector_btVoxelContentProvider::SwigDirector_btVoxelContentProvider(JNIEnv *jenv) : btVoxelContentProvider(), Swig::Director(jenv) {
 }
 
-btVoxelInfo SwigDirector_btVoxelContentProvider::getVoxel(int x, int y, int z) const {
-  btVoxelInfo c_result ;
-  jlong jresult = 0 ;
+void SwigDirector_btVoxelContentProvider::getVoxel(int x, int y, int z, btVoxelInfo const &voxelInfo) const {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   jint jx  ;
   jint jy  ;
   jint jz  ;
-  btVoxelInfo *argp ;
+  jlong jvoxelInfo = 0 ;
   
   if (!swig_override[0]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method btVoxelContentProvider::getVoxel.");
-    return c_result;
+    return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     jx = (jint) x;
     jy = (jint) y;
     jz = (jint) z;
-    jresult = (jlong) jenv->CallStaticLongMethod(Swig::jclass_CollisionJNI, Swig::director_method_ids[10], swigjobj, jx, jy, jz);
+    *(btVoxelInfo **)&jvoxelInfo = (btVoxelInfo *) &voxelInfo; 
+    jenv->CallStaticVoidMethod(Swig::jclass_CollisionJNI, Swig::director_method_ids[10], swigjobj, jx, jy, jz, jvoxelInfo);
     jthrowable swigerror = jenv->ExceptionOccurred();
     if (swigerror) {
       jenv->ExceptionClear();
       throw Swig::DirectorException(jenv, swigerror);
     }
     
-    argp = *(btVoxelInfo **)&jresult; 
-    if (!argp) {
-      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Unexpected null return for type btVoxelInfo");
-      return c_result;
-    }
-    c_result = *argp; 
   } else {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in btVoxelContentProvider::getVoxel ");
   }
   if (swigjobj) jenv->DeleteLocalRef(swigjobj);
-  return c_result;
 }
 
 SwigDirector_btVoxelContentProvider::~SwigDirector_btVoxelContentProvider() {
@@ -3358,7 +3350,7 @@ void SwigDirector_btVoxelContentProvider::swig_connect_director(JNIEnv *jenv, jo
     jmethodID base_methid;
   } methods[] = {
     {
-      "getVoxel", "(III)Lcom/badlogic/gdx/physics/bullet/collision/btVoxelInfo;", NULL 
+      "getVoxel", "(IIILcom/badlogic/gdx/physics/bullet/collision/btVoxelInfo;)V", NULL 
     }
   };
   
@@ -18206,24 +18198,27 @@ SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collision
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelContentProvider_1getVoxel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4) {
-  jlong jresult = 0 ;
+SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_CollisionJNI_btVoxelContentProvider_1getVoxel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   btVoxelContentProvider *arg1 = (btVoxelContentProvider *) 0 ;
   int arg2 ;
   int arg3 ;
   int arg4 ;
-  btVoxelInfo result;
+  btVoxelInfo *arg5 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
+  (void)jarg5_;
   arg1 = *(btVoxelContentProvider **)&jarg1; 
   arg2 = (int)jarg2; 
   arg3 = (int)jarg3; 
   arg4 = (int)jarg4; 
-  result = ((btVoxelContentProvider const *)arg1)->getVoxel(arg2,arg3,arg4);
-  *(btVoxelInfo **)&jresult = new btVoxelInfo((const btVoxelInfo &)result); 
-  return jresult;
+  arg5 = *(btVoxelInfo **)&jarg5;
+  if (!arg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "btVoxelInfo const & reference is null");
+    return ;
+  } 
+  ((btVoxelContentProvider const *)arg1)->getVoxel(arg2,arg3,arg4,(btVoxelInfo const &)*arg5);
 }
 
 
@@ -55761,7 +55756,7 @@ SWIGEXPORT void JNICALL Java_com_badlogic_gdx_physics_bullet_collision_Collision
       "SwigDirector_btInternalTriangleIndexCallback_internalProcessTriangleIndex", "(Lcom/badlogic/gdx/physics/bullet/collision/btInternalTriangleIndexCallback;JII)V" 
     },
     {
-      "SwigDirector_btVoxelContentProvider_getVoxel", "(Lcom/badlogic/gdx/physics/bullet/collision/btVoxelContentProvider;III)J" 
+      "SwigDirector_btVoxelContentProvider_getVoxel", "(Lcom/badlogic/gdx/physics/bullet/collision/btVoxelContentProvider;IIIJ)V" 
     },
     {
       "SwigDirector_ICollide_Process__SWIG_0", "(Lcom/badlogic/gdx/physics/bullet/collision/ICollide;JJ)V" 

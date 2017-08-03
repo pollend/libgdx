@@ -138,7 +138,7 @@ struct SwigDirector_btVoxelContentProvider : public btVoxelContentProvider, publ
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
     SwigDirector_btVoxelContentProvider(JNIEnv *jenv);
-    virtual btVoxelInfo getVoxel(int x, int y, int z) const;
+    virtual void getVoxel(int x, int y, int z, btVoxelInfo const &voxelInfo) const;
     virtual ~SwigDirector_btVoxelContentProvider();
 public:
     bool swig_overrides(int n) {

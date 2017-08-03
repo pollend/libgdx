@@ -101,8 +101,7 @@ public class LocalRayResult extends BulletBase {
   }
 
   public btVoxelInfo getVoxelInfo() {
-    long cPtr = CollisionJNI.LocalRayResult_voxelInfo_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new btVoxelInfo(cPtr, false);
-  }
+    return btVoxelContentProvider.obtainTemp(CollisionJNI.LocalRayResult_voxelInfo_get(swigCPtr, this), false);
+}
 
 }

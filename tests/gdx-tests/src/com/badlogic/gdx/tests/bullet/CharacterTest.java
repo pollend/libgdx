@@ -83,7 +83,7 @@ public class CharacterTest extends BaseBulletTest {
 		ghostObject.setCollisionShape(ghostShape);
 		ghostObject.setCollisionFlags(btCollisionObject.CollisionFlags.CF_CHARACTER_OBJECT);
 		characterController = new btKinematicCharacterController(ghostObject, ghostShape, .35f, Vector3.Y);
-		
+
 		// And add it to the physics world
 		world.collisionWorld.addCollisionObject(ghostObject, 
 			(short)btBroadphaseProxy.CollisionFilterGroups.CharacterFilter,

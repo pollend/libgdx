@@ -13,8 +13,20 @@
 %feature("director") btTriangleConvexcastCallback;
 %feature("director") btTriangleRaycastCallback;
 %feature("director") btVoxelContentProvider;
-%feature("director") btVoxelInfo;
 // FIXME reuse btDispatcher and fix ptr/array typemap/pool
+
+%typemap(javaout) 	btVoxelInfo *, const btVoxelInfo *, btVoxelInfo * const & {
+    return btVoxelContentProvider.obtainTemp($jnicall, $owner);
+}
+
+%typemap(javacode) btVoxelContentProvider %{
+    private final static btVoxelInfo temp = new btVoxelInfo(0, false);
+    /** Obtains a temporary instance, used by native methods that return a btManifoldPoint instance */
+    protected static btVoxelInfo obtainTemp(long cPtr, boolean own) {
+        temp.reset(cPtr, own);
+        return temp;
+    }
+%}
 
 %include "arrays_java.i"
 

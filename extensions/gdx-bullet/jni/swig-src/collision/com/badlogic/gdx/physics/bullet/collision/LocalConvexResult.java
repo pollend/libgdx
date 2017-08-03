@@ -92,9 +92,8 @@ public class LocalConvexResult extends BulletBase {
   }
 
   public btVoxelInfo getVoxelInfo() {
-    long cPtr = CollisionJNI.LocalConvexResult_voxelInfo_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new btVoxelInfo(cPtr, false);
-  }
+    return btVoxelContentProvider.obtainTemp(CollisionJNI.LocalConvexResult_voxelInfo_get(swigCPtr, this), false);
+}
 
   public void getHitNormalLocal(Vector3 out) {
     CollisionJNI.LocalConvexResult_getHitNormalLocal(swigCPtr, this, out);
