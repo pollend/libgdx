@@ -12,6 +12,8 @@
 %feature("director") btTriangleCallback;
 %feature("director") btTriangleConvexcastCallback;
 %feature("director") btTriangleRaycastCallback;
+%feature("director") btVoxelContentProvider;
+%feature("director") btVoxelInfo;
 // FIXME reuse btDispatcher and fix ptr/array typemap/pool
 
 %include "arrays_java.i"
@@ -175,6 +177,11 @@ CREATE_POOLED_OBJECT(btBroadphasePair, com/badlogic/gdx/physics/bullet/collision
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 %}
 %include "BulletCollision/CollisionShapes/btBoxShape.h"
+
+%{
+#include <BulletCollision/CollisionShapes/btVoxelShape.h>
+%}
+%include "BulletCollision/CollisionShapes/btVoxelShape.h"
 
 %{
 #include <BulletCollision/CollisionShapes/btCapsuleShape.h>
@@ -350,6 +357,12 @@ CREATE_POOLED_OBJECT(btBroadphasePair, com/badlogic/gdx/physics/bullet/collision
 #include <BulletCollision/CollisionDispatch/btCompoundCompoundCollisionAlgorithm.h>
 %}
 %include "BulletCollision/CollisionDispatch/btCompoundCompoundCollisionAlgorithm.h"
+
+%{
+#include <BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h>
+%}
+%include "BulletCollision/CollisionDispatch/btVoxelCollisionAlgorithm.h"
+
 
 %{
 #include <BulletCollision/CollisionDispatch/btCollisionConfiguration.h>

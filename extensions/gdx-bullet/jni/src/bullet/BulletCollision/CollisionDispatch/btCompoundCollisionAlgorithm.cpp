@@ -153,9 +153,11 @@ public:
 		if (TestAabbAgainstAabb2(aabbMin0,aabbMax0,aabbMin1,aabbMax1))
 		{
 
-			btCollisionObjectWrapper compoundWrap(this->m_compoundColObjWrap,childShape,m_compoundColObjWrap->getCollisionObject(),newChildWorldTrans,-1,index);
-			
+
+			btCollisionObjectWrapper compoundWrap(this->m_compoundColObjWrap,childShape,m_compoundColObjWrap->getCollisionObject(),newChildWorldTrans,-1,index,m_compoundColObjWrap->getVoxelInfo());
 			btCollisionAlgorithm* algo = 0;
+
+
 
 			if (m_resultOut->m_closestPointDistanceThreshold > 0)
 			{

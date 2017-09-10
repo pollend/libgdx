@@ -117,7 +117,7 @@ partId, int triangleIndex)
 		tm.setMargin(m_collisionMarginTriangle);
 		
 		
-		btCollisionObjectWrapper triObWrap(m_triBodyWrap,&tm,m_triBodyWrap->getCollisionObject(),m_triBodyWrap->getWorldTransform(),partId,triangleIndex);//correct transform?
+		btCollisionObjectWrapper triObWrap(m_triBodyWrap,&tm,m_triBodyWrap->getCollisionObject(),m_triBodyWrap->getWorldTransform(),partId,triangleIndex,m_triBodyWrap->getVoxelInfo());//correct transform?
 		btCollisionAlgorithm* colAlgo = 0;
 		
 		if (m_resultOut->m_closestPointDistanceThreshold > 0)
