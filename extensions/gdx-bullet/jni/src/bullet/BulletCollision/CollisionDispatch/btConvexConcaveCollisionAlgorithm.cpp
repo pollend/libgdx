@@ -116,7 +116,7 @@ partId, int triangleIndex)
 		btTriangleShape tm(triangle[0],triangle[1],triangle[2]);	
 		tm.setMargin(m_collisionMarginTriangle);
 		
-		
+
 		btCollisionObjectWrapper triObWrap(m_triBodyWrap,&tm,m_triBodyWrap->getCollisionObject(),m_triBodyWrap->getWorldTransform(),partId,triangleIndex,m_triBodyWrap->getVoxelInfo());//correct transform?
 		btCollisionAlgorithm* colAlgo = 0;
 		
